@@ -1,0 +1,31 @@
+.topAndBottom
+{
+  height: 50vh;
+  width: 100%;
+  color: #ffffff;
+  font-size: 4em;
+  transition: 0.25s;
+  cursor: pointer;
+}
+#topStart
+{
+  background-color: #660000;
+}
+#topStart:hover
+{
+  background-color: red;
+}
+#bottomInstructions
+{
+  background-color: #000066;
+}
+#bottomInstructions:hover
+{
+  background-color: blue;
+}
+.text
+{
+  text-align: center;
+  vertical-align: middle;
+  line-height: 50vh;
+}
