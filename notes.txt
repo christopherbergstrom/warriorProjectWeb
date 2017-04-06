@@ -1,0 +1,175 @@
+General Ideas
+	Weapons don’t automatically upgrade with each enemy defeated
+	Ony start with light weapon?
+	Enter/ create your own name for character?
+Items?
+
+Terminology
+	You blocked ??? damage with (power up, shield)
+	You received ??? damage from (enemy name)
+	You attacked with (power up, weapon)
+	You inflicted ??? damaged to (enemy name)
+	(enemy name) drops ??? gold
+	You successfully/unsuccessfully dodged the attack
+
+Starting screen
+	Welcome to game
+	Start btn
+	Instructions btn
+
+Enemy template/ class
+	Pass
+		Name
+		Weapons
+		Weapon ranges
+	Random weapons? (maybe later/ training rounds)
+
+Player class
+	Light/medium/heavy weapons functions
+	Magic/power up functions
+	Get weapon names/ ranges
+	Set weapon names/ ranges
+
+Weapon shop
+	Buy weapons/magic/power ups
+	Upgrade weapons/magic
+	Keep track of purchases/upgrades here
+
+Fight template/ class
+	Pass player and enemy object here
+	Double damage inflicting round
+	Double damage Light/Medium/Heavy Round
+	Ultimate block round
+	Double gold dropped round
+	Chance for critical
+	Change for gold dropped (1-5 gold)
+	
+
+Game screen layout
+
+Weapons
+	Light
+		Blow Darts
+		Throwing Knives
+		Throwing Axe
+		Mystical Bow
+		Crossbow
+		Javelin
+		Recurve Bow
+		Long Bow
+
+	Medium
+		Chain Whip
+		Ring Sword
+		Staff
+		Cestus
+		Spiked Chain
+		Meteor Hammer
+	Heavy
+		Shortsword
+		War Hammer
+		Mace
+		Flail
+		Spear
+		Mystical Sword
+		Trident
+		Scythe
+		Battle Axe
+		Broadsword
+
+	Shield
+		Wood Shield
+		Steel Shield
+		Mystical Shield
+		Iron Shield
+		Gold Shield
+		Reflector Shield
+
+	Power Ups
+		Ice +10 Every weapon/shield/magic
+		Fire +20 Every weapon/shield/magic
+		Lightning +30 Every weapon/shield/magic
+
+	Magic
+		Ice Blast
+		Fire Blast
+		Lightning Blast
+
+Stats
+	Health
+
+	Dodge Chance
+
+Enemies
+	1 Skeleton Archer
+		Health 250
+		Dagger 1-3
+		Throwing Knives 4-7
+		Bow 8-10
+		Shield 1-5
+		Dodge 20%
+	
+	2 Undead Soldier
+		Health 500
+		Mace 11-13
+		Sword 14-17
+		Halberd 18-20
+		Shield 6-10
+		Dodge 10%
+
+3 Harpy (constantly flying and out of reach unless it attacks with tallons
+		Health 750
+		Piercing Scream 21-23 (stun?)
+		Acid Spit 24-27
+		Tallons 28-30
+		Dodge 10%
+
+	4 Gorgon
+		Health 1000
+		Stone Gaze 31-33 (stun?)
+		Claws 34-37
+		Tail 38-40
+		Dodge 15%
+
+	5 Centaur
+		Health 1250
+		Charge 41-43
+		Chain Whip 44-47
+		Flail 48-50
+		Shield 21-25
+
+	6 Cerberus Dog
+		Health 1500
+		Fire Spit 51-53
+		Claws 54-57
+		Bite 58-60
+		Dodge 15%
+
+	7 Giant Spider
+		Health 1750
+		Trample 61-63
+		Bite 64-67
+		Stinger 68-70
+		Dodge 20%
+
+	8 Minotaur
+		Health 2000
+		Throwing Axe 71-73
+		Horns 74-77
+		Axe 78-80
+		Shield 36-40
+		Dodge 15%
+
+	9 Cyclops
+		Health 2500
+		Kick 81-83
+		Punch 84-87
+		Spiked Club 88-90
+
+	10 Dragon (If dragon attacks with fire breath it is out of range until round is over, dragon takes half damage for first 1000 health due to protective scales)
+		Health 3000
+		Claws 91-93
+		Tail 94-97
+		Bite 98-100
+		Fire Breath 101-110
+
