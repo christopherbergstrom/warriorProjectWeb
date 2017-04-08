@@ -3,9 +3,13 @@ class GameScreen
   makeGameScreen()
   {
     // make divs for game screen
-    $("body").append("<div id='leftBar'></div>");
-    $("body").append("<div id='rightBar'></div>");
-    $("body").append("<div id='middle'></div>");
-    $("body").append("<div id='bottom'></div>");
+    // playerStats = left bar
+    // enemyStats = right bar
+    // screen = top middle bar where buttons are
+    // actions = bottom bar where past actions show
+    $("body").append("<div id='playerStats'></div>");
+    $("body").append("<div id='enemyStats'></div>");
+    $("body").append("<div id='screen'></div>");
+    $("body").append("<div id='actions'></div>");
   }
 }
