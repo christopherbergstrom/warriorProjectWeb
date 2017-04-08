@@ -2,7 +2,7 @@ class Character
 {
   // Wpn = weapon
   // Dmg = damage
-  constructor(name, health, lightWpn, lightDmg, mediumWpn, mediumDmg, heavyWpn, heavyDmg, shield, shieldDmg, power, magic, magicDmg, dodge)
+  constructor(name, health, lightWpn, lightDmg, mediumWpn, mediumDmg, heavyWpn, heavyDmg, shield, shieldDmg, power, magic, magicDmg, dodge, isDragon, fireBreath, fireBreathDmg)
   {
     this.name = name;
     this.health = health;
@@ -18,6 +18,9 @@ class Character
     this.magic = magic;
     this.magicDmg = magicDmg;
     this.dodge = dodge;
+    this.isDragon = isDragon;
+    this.fireBreath = fireBreath;
+    this.fireBreathDmg = fireBreathDmg;
   }
   // name
   getName()
@@ -233,6 +236,41 @@ class Character
     if(typeof dodge === "number")
     {
       this.dodge += dodge;
+    }
+  }
+  // is dragon?
+  getFireBreath()
+  {
+    if(this.isDragon)
+    {
+      return this.fireBreath;
+    }
+  }
+  setFireBreath(fireBreath)
+  {
+    if(this.isDragon)
+    {
+      if(typeof fireBreath === "string")
+      {
+        this.fireBreath = fireBreath;
+      }
+    }
+  }
+  getFireBreathDmg()
+  {
+    if(this.isDragon)
+    {
+      return this.fireBreathDmg;
+    }
+  }
+  setFireBreathDmg(fireBreathDmg)
+  {
+    if(this.isDragon)
+    {
+      if(typeof fireBreathDmg === "number")
+      {
+        this.fireBreathDmg = fireBreathDmg;
+      }
     }
   }
 }
