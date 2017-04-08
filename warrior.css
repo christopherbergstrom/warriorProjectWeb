@@ -29,3 +29,51 @@
   vertical-align: middle;
   line-height: 50vh;
 }
+#playerStats
+{
+  position: absolute;
+  width: 20vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+  border-right: 1px solid black;
+  /*background-color: blue;*/
+}
+#enemyStats
+{
+  position: absolute;
+  width: 20vw;
+  height: 100vh;
+  right: 0;
+  top: 0;
+  border-left: 1px solid black;
+  /*background-color: green;*/
+}
+#screen
+{
+  position: absolute;
+  width: 60vw;
+  height: 60vh;
+  left: 20vw;
+  top: 0;
+  /*background-color: orange;*/
+}
+#actions
+{
+  position: absolute;
+  width: 60vw;
+  height: 40vh;
+  left: 20vw;
+  bottom: 0;
+  background-color: black;
+  /*border-top: 1px solid black;*/
+  overflow-y: auto;
+}
+.playerItem
+{
+  color: blue;
+}
+.enemyItem
+{
+  color: red;
+}
