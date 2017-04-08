@@ -2,7 +2,7 @@ class Character
 {
   // Wpn = weapon
   // Dmg = damage
-  constructor(name, health, lightWpn, lightDmg, mediumWpn, mediumDmg, heavyWpn, heavyDmg, shield, shieldDmg, power, magic, magicDmg, dodge, isDragon, fireBreath, fireBreathDmg)
+  constructor(name, health, lightWpn, lightDmg, mediumWpn, mediumDmg, heavyWpn, heavyDmg, shield, shieldDmg, power, magic, magicDmg, dodge, isDragon, fireBreath, fireBreathDmg, gold)
   {
     this.name = name;
     this.health = health;
@@ -21,6 +21,7 @@ class Character
     this.isDragon = isDragon;
     this.fireBreath = fireBreath;
     this.fireBreathDmg = fireBreathDmg;
+    this.gold = gold;
   }
   // name
   getName()
@@ -270,6 +271,28 @@ class Character
       if(typeof fireBreathDmg === "number")
       {
         this.fireBreathDmg = fireBreathDmg;
+      }
+    }
+  }
+  getGold()
+  {
+    return this.gold;
+  }
+  setGold(type, gold)
+  {
+    if(typeof gold === "number")
+    {
+      if(type === "add")
+      {
+        this.gold += gold;
+      }
+      else if(type === "sub")
+      {
+        this.gold -= gold;
+      }
+      else
+      {
+        this.gold = gold;
       }
     }
   }
