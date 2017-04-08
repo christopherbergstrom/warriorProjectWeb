@@ -48,60 +48,60 @@ Fight template/ class
 Game screen layout
 
 Weapons
-	Light
-		Blow Darts
-		Throwing Knives
-		Throwing Axe
-		Mystical Bow
-		Crossbow
-		Javelin
-		Recurve Bow
-		Long Bow
+	Light (upgrades increment by 2, range = 2)
+		Blow Darts		1-2
+		Throwing Knives	4-5	10G
+		Throwing Axe		7-8	20G
+		Mystical Bow		10-40 (no upgrades)	30G
+		Crossbow		10-11	40G
+		Javelin			13-14	50G
+		Recurve Bow		16-17	60G
+		Long Bow		19-20	70G
 
-	Medium
-		Chain Whip
-		Ring Sword
-		Staff
-		Cestus
-		Spiked Chain
-		Meteor Hammer
-	Heavy
-		Shortsword
-		War Hammer
-		Mace
-		Flail
-		Spear
-		Mystical Sword
-		Trident
-		Scythe
-		Battle Axe
-		Broadsword
+	Medium (upgrades increment by 3, range = 3)
+		Chain Whip		7-9
+		Ring Sword		11-13	40G
+		Staff			15-17	80G
+		Cestus			19-21	120G
+		Spiked Chain		23-25	160G
+		Meteor Hammer	27-29	200G
+	Heavy (upgrades increment by 4, range = 4)
+		Shortsword		15-18
+		War Hammer		20-23	55G
+		Mace			25-28	110G
+		Flail			30-33	165G
+		Spear			35-38	220G
+		Mystical Sword	40-100 (no upgrades)	275G
+		Trident			40-43	330G
+		Scythe			45-48	385G
+		Battle Axe		50-53	440G
+		Broadsword		55-58	500G
 
-	Shield
-		Wood Shield
-		Steel Shield
-		Mystical Shield
-		Iron Shield
-		Gold Shield
-		Reflector Shield
+	Shield (upgrades increment by 3, range = 3)
+		Wood Shield		2-4
+		Steel Shield		6-8	25G
+		Mystical Shield	10-45 (no upgrades)	50G
+		Iron Shield		10-12	75G
+		Gold Shield		14-16	100G
+		Reflector Shield	1-4 ( upgrades increment by 4, range = 4, reflects ½ dmg from range attacks back to enemy)		200G
 
 	Power Ups
-		Ice +10 Every weapon/shield/magic
-		Fire +20 Every weapon/shield/magic
-		Lightning +30 Every weapon/shield/magic
+		Ice +10 Every weapon/shield/magic		250G
+		Fire +20 Every weapon/shield/magic		500G
+		Lightning +30 Every weapon/shield/magic	750G
 
-	Magic
-		Ice Blast
-		Fire Blast
-		Lightning Blast
+	Magic (upgrades increment by 10, range = 10)
+		Ice Blast		10-20		600G
+		Fire Blast		25-35		800G
+		Lightning Blast		40-50		1000G
 
 Stats
-	Health
+	Health	250 (upgrades increment by 50, cost = 500G?)
 
-	Dodge Chance
+	Dodge Chance (upgrades increment by 5%, cost = 400G?, max 75%?)
 
 Enemies
-	1 Skeleton Archer
+	1 Skeleton Archer (15-30G)
 		Health 250
 		Dagger 1-3
 		Throwing Knives 4-7
@@ -109,7 +109,7 @@ Enemies
 		Shield 1-5
 		Dodge 20%
 	
-	2 Undead Soldier
+	2 Undead Soldier (45-60G)
 		Health 500
 		Mace 11-13
 		Sword 14-17
@@ -117,42 +117,42 @@ Enemies
 		Shield 6-10
 		Dodge 10%
 
-3 Harpy (constantly flying and out of reach unless it attacks with tallons
+3 Harpy  (75-90G) (constantly flying and out of reach unless it attacks with tallons
 		Health 750
 		Piercing Scream 21-23 (stun?)
 		Acid Spit 24-27
 		Tallons 28-30
 		Dodge 10%
 
-	4 Gorgon
+	4 Gorgon (105-120G)
 		Health 1000
 		Stone Gaze 31-33 (stun?)
 		Claws 34-37
 		Tail 38-40
 		Dodge 15%
 
-	5 Centaur
+	5 Centaur (135-150G)
 		Health 1250
 		Charge 41-43
 		Chain Whip 44-47
 		Flail 48-50
 		Shield 21-25
 
-	6 Cerberus Dog
+	6 Cerberus Dog (165-180G)
 		Health 1500
 		Fire Spit 51-53
 		Claws 54-57
 		Bite 58-60
 		Dodge 15%
 
-	7 Giant Spider
+	7 Giant Spider (195-210G)
 		Health 1750
 		Trample 61-63
 		Bite 64-67
 		Stinger 68-70
 		Dodge 20%
 
-	8 Minotaur
+	8 Minotaur (225-240G)
 		Health 2000
 		Throwing Axe 71-73
 		Horns 74-77
@@ -160,16 +160,18 @@ Enemies
 		Shield 36-40
 		Dodge 15%
 
-	9 Cyclops
+	9 Cyclops (255-270G)
 		Health 2500
 		Kick 81-83
 		Punch 84-87
 		Spiked Club 88-90
 
-	10 Dragon (If dragon attacks with fire breath it is out of range until round is over, dragon takes half damage for first 1000 health due to protective scales)
+	10 Dragon  (285-300G) (If dragon attacks with fire breath it is out of range until round is over, dragon takes half damage for first 1000 health due to protective scales)
 		Health 3000
 		Claws 91-93
 		Tail 94-97
 		Bite 98-100
 		Fire Breath 101-110
+
+	Practice enemy (random weapons, difficulty and final gold dropp based on player levels)
 
