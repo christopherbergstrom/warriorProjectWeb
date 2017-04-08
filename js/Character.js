@@ -2,25 +2,36 @@ class Character
 {
   // Wpn = weapon
   // Dmg = damage
-  constructor(name, health, lightWpn, lightDmg, mediumWpn, mediumDmg, heavyWpn, heavyDmg, shield, shieldDmg, power, magic, magicDmg, dodge, isDragon, fireBreath, fireBreathDmg, gold)
+  // Rng = range
+  // Light weapons have range of 2
+  // Damage is calculated by: passing minimum damage to get damage method and add to random number multiply range to get damage inflicted
+  // Ex: Blow Darts damagr = 1-2
+  // Blow Darts attack damage = (1 + (Math.floor(Math.random()*2)))
+  constructor(name, health, lightWpn, lightDmg, lightWpnDmgRng, mediumWpn, mediumDmg, mediumWpnDmgRng, heavyWpn, heavyDmg, heavyWpnDmgRng, shield, shieldDmg, shieldDmgRng, power, magic, magicDmg, magicDmgRng, dodge, isDragon, fireBreath, fireBreathDmg, fireBreathDmgRng, gold)
   {
     this.name = name;
     this.health = health;
     this.lightWpn = lightWpn;
     this.lightDmg = lightDmg;
+    this.lightWpnDmgRng = lightWpnDmgRng;
     this.mediumWpn = mediumWpn;
     this.mediumDmg = mediumDmg;
+    this.mediumWpnDmgRng = mediumWpnDmgRng;
     this.heavyWpn = heavyWpn;
     this.heavyDmg = heavyDmg;
+    this.heavyWpnDmgRng = heavyWpnDmgRng;
     this.shield = shield;
     this.shieldDmg = shieldDmg;
+    this.shieldDmgRng = shieldDmgRng;
     this.power = power;
     this.magic = magic;
     this.magicDmg = magicDmg;
+    this.magicDmgRng = magicDmgRng;
     this.dodge = dodge;
     this.isDragon = isDragon;
     this.fireBreath = fireBreath;
     this.fireBreathDmg = fireBreathDmg;
+    this.fireBreathDmgRng = fireBreathDmgRng;
     this.gold = gold;
   }
   // name
