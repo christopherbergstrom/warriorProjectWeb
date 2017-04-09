@@ -37,7 +37,6 @@
   left: 0;
   top: 0;
   border-right: 1px solid black;
-  /*background-color: blue;*/
 }
 #enemyStats
 {
@@ -47,7 +46,6 @@
   right: 0;
   top: 0;
   border-left: 1px solid black;
-  /*background-color: green;*/
 }
 #screen
 {
@@ -56,7 +54,6 @@
   height: 60vh;
   left: 20vw;
   top: 0;
-  /*background-color: orange;*/
 }
 #actions
 {
@@ -66,14 +63,72 @@
   left: 20vw;
   bottom: 0;
   background-color: black;
-  /*border-top: 1px solid black;*/
   overflow-y: auto;
 }
-.playerItem
+.characterAction
+{
+  font-size: 2em;
+  background-color: black;
+  width: 100%;
+  height: 10%;
+}
+.playerAction
 {
   color: blue;
 }
-.enemyItem
+.enemyAction
 {
   color: red;
+}
+.buttons
+{
+  position: absolute;
+  width: 20%;
+  height: 10%;
+  border: 1px solid black;
+  text-align: center;
+}
+#attackLight
+{
+  top: 10%;
+  left: 10%;
+}
+#attackMedium
+{
+  top: 10%;
+  left: 40%;
+}
+#attackHeavy
+{
+  top: 10%;
+  left: 70%;
+}
+#block
+{
+  top: 30%;
+  left: 10%;
+}
+#dodge
+{
+  top: 30%;
+  left: 40%;
+}
+#attackMagic
+{
+  top: 30%;
+  left: 70%;
+}
+.click
+{
+  color: white;
+  background-color: #6666ff;
+  transition: .25s;
+  cursor: pointer;
+}
+.noClick
+{
+  color: black;
+  background-color: #999999;
+  transition: .25s;
+  cursor: not-allowed;
 }
