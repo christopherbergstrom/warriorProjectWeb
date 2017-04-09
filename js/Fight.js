@@ -14,16 +14,23 @@ class Fight
     {
       $("#screen").append("<button id='attackMagic' class='buttons noClick'>"+player.getMagic()+"</button>");
     }
+    $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" attack!</div>");
     gameLoop();
+    var magicCount = 4;
     function gameLoop()
     {
-      $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" attack</div>");
-      while(player.getHealth > 0 || enemy.getHealth > 0);
+      if(player.getHealth() > 0 || enemy.getHealth() > 0)
       {
-        // add is harpy to see if can attack with non light weapon
-        // change magic boolean to variable to keep track of when you can use magic
-        playerAttack(true, true, true, true);
+        // if enemy is Harpy, player can only use light(range) weapons
+        // magic can only be used once every 4 moves
+        playerAttack(true, (!(enemy.getName() === "Harpy")), (!(enemy.getName() === "Harpy")), (magicCount % 4 === 0));
+        magicCount++;
       }
+      else
+      {
+        // implement back to MainGame here
+      }
+      // console.log("outside of while loop");
     }
     // if these arguments are true, player can click on buttons
     // player attacks here
@@ -67,31 +74,33 @@ class Fight
       }
     }
     // player defends here
-    function playerDefend(receivingDamage)
+    function playerDefend(receivingDmg)
     {
       // can only click on defend options
       toggleClasses();
       $("#block").click(function()
       {
         var damageBlocked = player.getShieldDmgTotal();
-        if (damageBlocked >= receivingDamage)
+        if (damageBlocked >= receivingDmg)
         {
-          $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" blocks "+receivingDamage+" damage with "+player.getShield()+"</div>");
-          $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts 0 damage to"+player.getName()+"</div>");
+          $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" blocks "+receivingDmg+" damage with "+player.getShield()+"</div>");
+          $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts 0 damage to "+player.getName()+"</div>");
           showHealthLevels();
           // can only click on attack options
           toggleClasses();
-          playerAttack();
+          gameLoop();
+          // playerAttack(true, (!(enemy.getName() === "Harpy")), (!(enemy.getName() === "Harpy")), (magicCount % 4 === 0));
         }
         else
         {
           $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" blocks "+damageBlocked+" damage with "+player.getShield()+"</div>");
-          $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts "+(receivingDamage-damageBlocked)+" damage to"+player.getName()+"</div>");
-          player.setHealth("sub", (receivingDamage-damageBlocked));
+          $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts "+(receivingDmg-damageBlocked)+" damage to "+player.getName()+"</div>");
+          player.setHealth("sub", (receivingDmg-damageBlocked));
           showHealthLevels();
           // can only click on attack options
           toggleClasses();
-          playerAttack();
+          gameLoop();
+          // playerAttack(true, (!(enemy.getName() === "Harpy")), (!(enemy.getName() === "Harpy")), (magicCount % 4 === 0));
         }
       });
       $("#dodge").click(function()
@@ -100,18 +109,24 @@ class Fight
         if (player.getDodged())
         {
           $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" successfully dodged the attack</div>");
-          $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts 0 damage to"+player.getName()+"</div>");
+          $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts 0 damage to "+player.getName()+"</div>");
           showHealthLevels();
-          playerAttack();
+          // can only click on attack options
+          toggleClasses();
+          gameLoop();
+          // playerAttack(true, (!(enemy.getName() === "Harpy")), (!(enemy.getName() === "Harpy")), (magicCount % 4 === 0));
         }
         // player dodge unsuccessful
         else
         {
           $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" unsuccessfully dodged the attack</div>");
-          $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts "+receivingDamage+" damage to"+player.getName()+"</div>");
-          player.setHealth("sub", receingDamage);
+          $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts "+receivingDmg+" damage to "+player.getName()+"</div>");
+          player.setHealth("sub", receivingDmg);
           showHealthLevels();
-          playerAttack();
+          // can only click on attack options
+          toggleClasses();
+          gameLoop();
+          // playerAttack(true, (!(enemy.getName() === "Harpy")), (!(enemy.getName() === "Harpy")), (magicCount % 4 === 0));
         }
       });
     }
@@ -120,7 +135,7 @@ class Fight
     {
       // chooses which attack enemy uses
       var whichAttack;
-      if (enemy.isDragon())
+      if (enemy.isCharacterDragon())
       {
         whichAttack = Math.floor(Math.random()*4);
         if (whichAttack === 0)
@@ -164,7 +179,7 @@ class Fight
       }
     }
     // enemy defends here
-    function enemyDefend(recievingDmg)
+    function enemyDefend(receivingDmg)
     {
       // if enemy can block and dodge choose randomly between the two
       if (enemy.getShield() !== null && enemy.getDodge() !== 0)
@@ -172,59 +187,59 @@ class Fight
         var whichDefense = Math.floor(Math.random()*2);
         if (whichDefense === 0)
         {
-          enemyBlock();
+          enemyBlock(receivingDmg);
         }
         else
         {
-          enemyDodge();
+          enemyDodge(receivingDmg);
         }
       }
       // if enemy can only block
       else if (enemy.getShield() !== null)
       {
-        enemyBlock();
+        enemyBlock(receivingDmg);
       }
       // if enemy can only dodge
       else if (enemy.getDodge() !== 0)
       {
-        enemyDodge();
+        enemyDodge(receivingDmg);
       }
       // if enemy can't block or dodge
       else
       {
         // enemy receives full damage
-        $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+receivingDamage+" damage to"+enemy.getName()+"</div>");
-        enemy.setHealth("sub", receivingDamage);
+        $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+receivingDmg+" damage to "+enemy.getName()+"</div>");
+        enemy.setHealth("sub", receivingDmg);
         showHealthLevels();
         enemyAttack();
       }
-      function enemyBlock()
+      function enemyBlock(receivingDmg)
       {
         // enemy recieves partial damage
         var damageBlocked = enemy.getShieldDmgTotal();
-        if (damageBlocked >= receivingDamage)
+        if (damageBlocked >= receivingDmg)
         {
-          $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" blocks "+receivingDamage+" damage with Shield</div>");
-          $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" inflicts 0 damage to"+enemy.getName()+"</div>");
+          $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" blocks "+receivingDmg+" damage with Shield</div>");
+          $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" inflicts 0 damage to "+enemy.getName()+"</div>");
           showHealthLevels();
           enemyAttack();
         }
         else
         {
           $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" blocks "+damageBlocked+" damage with Shield</div>");
-          $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+(receivingDamage-damageBlocked)+" damage to"+enemy.getName()+"</div>");
-          enemy.setHealth("sub", (receivingDamage-damageBlocked));
+          $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+(receivingDmg-damageBlocked)+" damage to "+enemy.getName()+"</div>");
+          enemy.setHealth("sub", (receivingDmg-damageBlocked));
           showHealthLevels();
           enemyAttack();
         }
       }
-      function enemyDodge()
+      function enemyDodge(receivingDmg)
       {
         // enemy dodge successful
         if (enemy.getDodged())
         {
           $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" successfully dodged your attack</div>");
-          $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" inflicts 0 damage to"+enemy.getName()+"</div>");
+          $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" inflicts 0 damage to "+enemy.getName()+"</div>");
           showHealthLevels();
           enemyAttack();
         }
@@ -232,8 +247,8 @@ class Fight
         else
         {
           $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" unsuccessfully dodged your attack</div>");
-          $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+receivingDamage+" damage to"+enemy.getName()+"</div>");
-          enemy.setHealth("sub", receingDamage);
+          $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+receivingDmg+" damage to "+enemy.getName()+"</div>");
+          enemy.setHealth("sub", receivingDmg);
           showHealthLevels();
           enemyAttack();
         }
@@ -249,8 +264,8 @@ class Fight
     }
     function showHealthLevels()
     {
-      $("#actions").prepend("div class='playerAction characterAction'>"+player.getName()+" HP: "+player.getHealth()+"</div>");
-      $("#actions").prepend("div class='enemyAction characterAction'>"+enemy.getName()+" HP: "+enemy.getHealth()+"</div>");
+      $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" HP: "+player.getHealth()+"</div>");
+      $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" HP: "+enemy.getHealth()+"</div>");
     }
   }
 }
