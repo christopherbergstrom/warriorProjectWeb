@@ -7,31 +7,32 @@ class Character
   // Damage is calculated by: passing minimum damage to get damage method and add to random number multiply range to get damage inflicted
   // Ex: Blow Darts damagr = 1-2
   // Blow Darts attack damage = (1 + (Math.floor(Math.random()*2)))
-  constructor(name, health, lightWpn, lightDmg, lightWpnDmgRng, mediumWpn, mediumDmg, mediumWpnDmgRng, heavyWpn, heavyDmg, heavyWpnDmgRng, shield, shieldDmg, shieldDmgRng, power, magic, magicDmg, magicDmgRng, dodge, isDragon, fireBreath, fireBreathDmg, fireBreathDmgRng, gold)
+  constructor(name, health, lightWpn, lightDmg, lightRng, mediumWpn, mediumDmg, mediumRng, heavyWpn, heavyDmg, heavyRng, shield, shieldDmg, shieldRng, power, powerDmg, magic, magicDmg, magicRng, dodge, isDragon, fireBreath, fireBreathDmg, fireBreathRng, gold)
   {
     this.name = name;
     this.health = health;
     this.lightWpn = lightWpn;
     this.lightDmg = lightDmg;
-    this.lightWpnDmgRng = lightWpnDmgRng;
+    this.lightRng = lightRng;
     this.mediumWpn = mediumWpn;
     this.mediumDmg = mediumDmg;
-    this.mediumWpnDmgRng = mediumWpnDmgRng;
+    this.mediumRng = mediumRng;
     this.heavyWpn = heavyWpn;
     this.heavyDmg = heavyDmg;
-    this.heavyWpnDmgRng = heavyWpnDmgRng;
+    this.heavyRng = heavyRng;
     this.shield = shield;
     this.shieldDmg = shieldDmg;
-    this.shieldDmgRng = shieldDmgRng;
+    this.shieldRng = shieldRng;
     this.power = power;
+    this.powerDmg = powerDmg;
     this.magic = magic;
     this.magicDmg = magicDmg;
-    this.magicDmgRng = magicDmgRng;
+    this.magicRng = magicRng;
     this.dodge = dodge;
     this.isDragon = isDragon;
     this.fireBreath = fireBreath;
     this.fireBreathDmg = fireBreathDmg;
-    this.fireBreathDmgRng = fireBreathDmgRng;
+    this.fireBreathRng = fireBreathRng;
     this.gold = gold;
   }
   // name
@@ -61,7 +62,8 @@ class Character
       }
       else if(type === "sub")
       {
-        this.health -= health;
+        if ((this.health - health) < 0)
+          this.health = 0;
       }
       else
       {
@@ -99,6 +101,14 @@ class Character
       this.lightDmg += lightDmg;
     }
   }
+  getLightRng()
+  {
+    return this.lightRng;
+  }
+  getLightDmgTotal()
+  {
+    return (this.getLightDmg()+(Math.floor(Math.random()*this.getLightRng())));
+  }
   // medium weapon
   getMediumWpn()
   {
@@ -128,6 +138,14 @@ class Character
     {
       this.mediumDmg += mediumDmg;
     }
+  }
+  getMediumRng()
+  {
+    return this.mediumRng;
+  }
+  getMediumDmgTotal()
+  {
+    return (this.getMediumDmg()+(Math.floor(Math.random()*this.getMediumRng())));
   }
   // heavy weapon
   getHeavyWpn()
@@ -159,6 +177,14 @@ class Character
       this.heavyDmg += heavyDmg;
     }
   }
+  getHeavyRng()
+  {
+    return this.heavyRng;
+  }
+  getHeavyDmgTotal()
+  {
+    return (this.getHeavyDmg()+(Math.floor(Math.random()*this.getHeavyRng())));
+  }
   // shield
   getShield()
   {
@@ -189,10 +215,18 @@ class Character
       this.shieldDmg += shieldDmg;
     }
   }
+  getShieldRng()
+  {
+    return this.shieldRng;
+  }
+  getShieldDmgTotal()
+  {
+    return (this.getShieldDmg()+(Math.floor(Math.random()*this.getShieldRng())));
+  }
   // power up
   getPower()
   {
-    return(this.power);
+    return this.power;
   }
   setPower(power)
   {
@@ -200,6 +234,10 @@ class Character
     {
       this.power = power;
     }
+  }
+  getPowerDmg()
+  {
+    return this.powerDmg;
   }
   // magic
   getMagic()
@@ -231,6 +269,14 @@ class Character
       this.magicDmg += magicDmg;
     }
   }
+  getMagicRng()
+  {
+    return this.magicRng;
+  }
+  getMagicDmgTotal()
+  {
+    return (this.getMagicDmg()+(Math.floor(Math.random()*this.getMagicRng())));
+  }
   //dodge
   getDodge()
   {
@@ -250,17 +296,29 @@ class Character
       this.dodge += dodge;
     }
   }
+  getDodged()
+  {
+    // var dodged =
+    if ((1+(Math.floor(Math.random()*100))) <= this.getDodge())
+      return true;
+    else
+      return false;
+  }
   // is dragon?
+  isCharacterDragon()
+  {
+    return(this.isDragon);
+  }
   getFireBreath()
   {
-    if(this.isDragon)
+    if(this.isDragon())
     {
       return this.fireBreath;
     }
   }
   setFireBreath(fireBreath)
   {
-    if(this.isDragon)
+    if(this.isDragon())
     {
       if(typeof fireBreath === "string")
       {
@@ -270,14 +328,14 @@ class Character
   }
   getFireBreathDmg()
   {
-    if(this.isDragon)
+    if(this.isDragon())
     {
       return this.fireBreathDmg;
     }
   }
   setFireBreathDmg(fireBreathDmg)
   {
-    if(this.isDragon)
+    if(this.isDragon())
     {
       if(typeof fireBreathDmg === "number")
       {
@@ -285,6 +343,21 @@ class Character
       }
     }
   }
+  getFireBreathRng()
+  {
+    if(this.isDragon())
+    {
+      return this.fireBreathRng;
+    }
+  }
+  getFireBreathDmgTotal()
+  {
+    if(this.isDragon())
+    {
+      return (this.getFireBreathDmg()+(Math.floor(Math.random()*this.getFireBreathRng())));
+    }
+  }
+  // gold
   getGold()
   {
     return this.gold;
