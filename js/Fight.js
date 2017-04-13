@@ -5,7 +5,7 @@ class Fight
   fight(player, enemy)
   {
     var magicCount = 4;
-    var magicAttack;
+    var magicAttack = false;
     // add action buttons to screen
     addButtons();
     // add player and enemy stats to left and right bars
@@ -18,8 +18,19 @@ class Fight
       if(player.getHealth() > 0 || enemy.getHealth() > 0)
       {
         // magic can only be used once every 4 moves
-        playerAttack(true, (enemy.getName() !== "Harpy"), (enemy.getName() !== "Harpy"), (magicCount % 4 === 0));
-        magicCount++;
+        if (magicAttack === false)
+        {
+          $("#attackMagic").removeClass("click").unbind("click");
+          $("#attackMagic").addClass("noClick").unbind("click");
+          magicCount++;
+        }
+        if (magicCount % 4 === 0)
+        {
+          magicAttack = true;
+          $("#attackMagic").removeClass("noClick").unbind("click");
+          $("#attackMagic").addClass("click").unbind("click");
+        }
+        playerAttack(true, (enemy.getName() !== "Harpy"), (enemy.getName() !== "Harpy"), magicAttack);
       }
       else
       {
@@ -64,6 +75,8 @@ class Fight
       {
         $("#attackMagic").click(function()
         {
+          magicAttack = false;
+          // $("#attackMagic").toggleClass("click noClick").unbind("click");
           $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getMagic()+"</div>");
           actionFade();
           // send damage to enemyDefend
@@ -75,6 +88,8 @@ class Fight
     function playerDefend(receivingDmg)
     {
       // can only click on defend options
+      $("#attackMagic").removeClass("click").unbind("click");
+      $("#attackMagic").addClass("noClick").unbind("click");
       toggleClasses();
       $("#block").click(function()
       {
@@ -89,7 +104,6 @@ class Fight
           // can only click on attack options
           toggleClasses();
           gameLoop();
-          // playerAttack(true, (!(enemy.getName() === "Harpy")), (!(enemy.getName() === "Harpy")), (magicCount % 4 === 0));
         }
         else
         {
@@ -102,7 +116,6 @@ class Fight
           // can only click on attack options
           toggleClasses();
           gameLoop();
-          // playerAttack(true, (!(enemy.getName() === "Harpy")), (!(enemy.getName() === "Harpy")), (magicCount % 4 === 0));
         }
       });
       $("#dodge").click(function()
@@ -155,28 +168,24 @@ class Fight
         enemyFireBreath();
       function enemyAttackLight()
       {
-        console.log("in light");
         $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" attacks with "+enemy.getLightWpn()+"</div>");
         actionFade();
         playerDefend(enemy.getLightDmgTotal());
       }
       function enemyAttackMedium()
       {
-        console.log("in medium");
         $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" attacks with "+enemy.getMediumWpn()+"</div>");
         actionFade();
         playerDefend(enemy.getMediumDmgTotal());
       }
       function enemyAttackHeavy()
       {
-        console.log("in heavy");
         $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" attacks with "+enemy.getHeavyWpn()+"</div>");
         actionFade();
         playerDefend(enemy.getHeavyDmgTotal());
       }
       function enemyFireBreath()
       {
-        console.log("in firebreath");
         $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" attacks with "+enemy.getFireBreath()+"</div>");
         actionFade();
         playerDefend(enemy.getFireBreathDmgTotal());
@@ -268,7 +277,7 @@ class Fight
       $("#screen").append("<button id='dodge' class='buttonsBottom noClick'>Dodge "+player.getDodge()+"%</button>");
       if (player.getMagic() !== null)
       {
-        $("#screen").append("<button id='attackMagic' class='buttonsTop click'>"+player.getMagic()+"</button>");
+        $("#screen").append("<button id='attackMagic' class='buttonsTop noClick'>"+player.getMagic()+"</button>");
         magicAttack = true;
       }
       $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" attack!</div>");
@@ -306,7 +315,6 @@ class Fight
         $("#enemyStats").append("<div>"+enemy.getShield()+" "+enemy.getShieldDmg()+"-"+(enemy.getShieldDmg()+(enemy.getShieldRng()-1))+"</div>");
       if (enemy.getDodge() !== null)
         $("#enemyStats").append("<div>Dodge "+enemy.getDodge()+"%</div>");
-      
     }
     function toggleClasses()
     {
@@ -318,11 +326,12 @@ class Fight
         $("#attackLight").toggleClass("click noClick").unbind("click");
         $("#attackMedium").toggleClass("click noClick").unbind("click");
         $("#attackHeavy").toggleClass("click noClick").unbind("click");
+        // if (player.getMagic() !== null)
+        // {
+        //   $("#attackMagic").toggleClass("click noClick").unbind("click");
+        // }
       }
-      if (player.getMagic() !== null && magicCount % 4 === 0)
-      {
-        $("#attackMagic").toggleClass("click noClick").unbind("click");
-      }
+      // $("#attackMagic").toggleClass("click noClick").unbind("click");
       $("#block").toggleClass("click noClick").unbind("click");
       $("#dodge").toggleClass("click noClick").unbind("click");
     }
