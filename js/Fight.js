@@ -6,16 +6,22 @@ class Fight
   {
     var magicCount = 4;
     var magicAttack = false;
+    var doubleDamage = 1;
+    var doubleLight = 1;
+    var doubleMedium = 1;
+    var doubleHeavy = 1;
+    var ultimateBlock = 1;
+    var critical = 1;
+    var doubleGold = 1;
     // add action buttons to screen
     addButtons();
     // add player and enemy stats to left and right bars
     addStats();
     gameLoop();
-    // implement extras here; double damage, double light, double medium, double heavy, ultimate block, double gold, gold drop amount
     // implement dodge and attack with coresponding weapon, only inflict damage if dodge was successful?
     function gameLoop()
     {
-      if(player.getHealth() > 0 || enemy.getHealth() > 0)
+      if(player.getHealth() > 0)
       {
         // magic can only be used once every 4 moves
         if (magicAttack === false)
@@ -30,10 +36,13 @@ class Fight
           $("#attackMagic").removeClass("noClick").unbind("click");
           $("#attackMagic").addClass("click").unbind("click");
         }
+        resetSpecialRounds();
+        specialRounds();
         playerAttack(true, (enemy.getName() !== "Harpy"), (enemy.getName() !== "Harpy"), magicAttack);
       }
       else
       {
+        console.log("player died");
         // implement back to MainGame here
       }
     }
@@ -48,7 +57,8 @@ class Fight
           $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getLightWpn()+"</div>");
           actionFade();
           // send damage to enemyDefend
-          enemyDefend(player.getLightDmgTotal());
+          // normal damage multiplied by special rounds
+          enemyDefend((player.getLightDmgTotal()*doubleDamage*doubleLight*critical));
         });
       }
       if (medium)
@@ -58,7 +68,8 @@ class Fight
           $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getMediumWpn()+"</div>");
           actionFade();
           // send damage to enemyDefend
-          enemyDefend(player.getMediumDmgTotal());
+          // normal damage multiplied by special rounds
+          enemyDefend((player.getMediumDmgTotal()*doubleDamage*doubleMedium*critical));
         });
       }
       if (heavy)
@@ -68,7 +79,8 @@ class Fight
           $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getHeavyWpn()+"</div>");
           actionFade();
           // send damage to enemyDefend
-          enemyDefend(player.getHeavyDmgTotal());
+          // normal damage multiplied by special rounds
+          enemyDefend((player.getHeavyDmgTotal()*doubleDamage*doubleHeavy*critical));
         });
       }
       if (magic)
@@ -76,11 +88,11 @@ class Fight
         $("#attackMagic").click(function()
         {
           magicAttack = false;
-          // $("#attackMagic").toggleClass("click noClick").unbind("click");
           $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getMagic()+"</div>");
           actionFade();
           // send damage to enemyDefend
-          enemyDefend(player.getMagicDmgTotal());
+          // normal damage multiplied by special rounds
+          enemyDefend((player.getMagicDmgTotal()*doubleDamage*critical));
         });
       }
     }
@@ -150,22 +162,30 @@ class Fight
     // enemy attacks here
     function enemyAttack()
     {
-      // chooses which attack enemy uses
-      var whichAttack;
-      // if enemy is dragon choose 1-4 attackd else choose 1-3
-      if (enemy.isCharacterDragon())
-        whichAttack = Math.floor(Math.random()*4);
+      if (enemy.getHealth() > 0)
+      {
+        // chooses which attack enemy uses
+        var whichAttack;
+        // if enemy is dragon choose 1-4 attackd else choose 1-3
+        if (enemy.isCharacterDragon())
+          whichAttack = Math.floor(Math.random()*4);
+        else
+          whichAttack = Math.floor(Math.random()*3);
+        // attack based on whichAttack number
+        if (whichAttack === 0)
+          enemyAttackLight();
+        else if (whichAttack === 1)
+          enemyAttackMedium();
+        else if (whichAttack === 2)
+          enemyAttackHeavy();
+        else
+          enemyFireBreath();
+      }
       else
-        whichAttack = Math.floor(Math.random()*3);
-      // attack based on whichAttack number
-      if (whichAttack === 0)
-        enemyAttackLight();
-      else if (whichAttack === 1)
-        enemyAttackMedium();
-      else if (whichAttack === 2)
-        enemyAttackHeavy();
-      else
-        enemyFireBreath();
+      {
+        console.log("enemy died");
+        // implement back to MainGame here
+      }
       function enemyAttackLight()
       {
         $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" attacks with "+enemy.getLightWpn()+"</div>");
@@ -215,13 +235,14 @@ class Fight
         // enemy receives full damage
         $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+receivingDmg+" damage to "+enemy.getName()+"</div>");
         actionFade();
+        // gold drop amount here
         enemy.setHealth("sub", receivingDmg);
         showHealthLevels();
         enemyAttack();
       }
       function enemyBlock(receivingDmg)
       {
-        // enemy recieves partial damage
+        // enemy blocks all damage
         var damageBlocked = enemy.getShieldDmgTotal();
         if (damageBlocked >= receivingDmg)
         {
@@ -232,12 +253,16 @@ class Fight
           showHealthLevels();
           enemyAttack();
         }
+        // enemy recieves partial damage
         else
         {
           $("#actions").prepend("<div class='enemyAction characterAction'>"+enemy.getName()+" blocks "+damageBlocked+" damage with Shield</div>");
           actionFade();
           $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+(receivingDmg-damageBlocked)+" damage to "+enemy.getName()+"</div>");
           actionFade();
+          // enemy has 10% of dropping gold if it is hit
+          if (randomNum())
+            goldPrintout(goldAmount());
           enemy.setHealth("sub", (receivingDmg-damageBlocked));
           showHealthLevels();
           enemyAttack();
@@ -262,6 +287,9 @@ class Fight
           actionFade();
           $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+receivingDmg+" damage to "+enemy.getName()+"</div>");
           actionFade();
+          // enemy has 10% of dropping gold if it is hit
+          if (randomNum())
+            goldPrintout(goldAmount());
           enemy.setHealth("sub", receivingDmg);
           showHealthLevels();
           enemyAttack();
@@ -326,12 +354,7 @@ class Fight
         $("#attackLight").toggleClass("click noClick").unbind("click");
         $("#attackMedium").toggleClass("click noClick").unbind("click");
         $("#attackHeavy").toggleClass("click noClick").unbind("click");
-        // if (player.getMagic() !== null)
-        // {
-        //   $("#attackMagic").toggleClass("click noClick").unbind("click");
-        // }
       }
-      // $("#attackMagic").toggleClass("click noClick").unbind("click");
       $("#block").toggleClass("click noClick").unbind("click");
       $("#dodge").toggleClass("click noClick").unbind("click");
     }
@@ -347,6 +370,92 @@ class Fight
     function actionFade()
     {
       $("#actions div").first().hide().fadeIn("slow");
+    }
+    function specialRounds()
+    {
+      // array is used for spacing above and below special rounds printout
+      var specialRoundsArray = [];
+      if (randomNum())
+      {
+        critical = 2;
+      }
+      if (randomNum())
+      {
+        doubleGold = 2;
+        specialRoundsArray.push("<div class='extraAction characterAction'>DOUBLE GOLD DROPPED ROUND!</div>");
+        console.log(doubleGold);
+      }
+      if (randomNum())
+      {
+        ultimateBlock = 100;
+        specialRoundsArray.push("<div class='extraAction characterAction'>ULTIMATE BLOCK ROUND!</div>");
+        console.log(ultimateBlock);
+      }
+      if (randomNum())
+      {
+        doubleHeavy = 2;
+        specialRoundsArray.push("<div class='extraAction characterAction'>DOUBLE DAMAGE HEAVY WEAPON ROUND!</div>");
+        console.log(doubleHeavy);
+      }
+      if (randomNum())
+      {
+        doubleMedium = 2;
+        specialRoundsArray.push("<div class='extraAction characterAction'>DOUBLE DAMAGE MEDIUM WEAPON ROUND!</div>");
+        console.log(doubleMedium);
+      }
+      if (randomNum())
+      {
+        doubleLight = 2;
+        specialRoundsArray.push("<div class='extraAction characterAction'>DOUBLE DAMAGE LIGHT WEAPON ROUND!</div>");
+        console.log(doubleLight);
+      }
+      if (randomNum())
+      {
+        doubleDamage = 2;
+        specialRoundsArray.push("<div class='extraAction characterAction'>DOUBLE DAMAGE INFLICTING ROUND!</div>");
+        console.log(doubleDamage);
+      }
+      if (specialRoundsArray.length > 0)
+      {
+        specialRoundsArray.forEach(function(item)
+        {
+          $("#actions").prepend(item);
+          actionFade();
+        });
+        $("#actions").prepend("<div class='characterAction'>.</div>");
+      }
+    }
+    function resetSpecialRounds()
+    {
+      var doubleDamage = 1;
+      var doubleLight = 1;
+      var doubleMedium = 1;
+      var doubleHeavy = 1;
+      var ultimateBlock = 1;
+      var critical = 1;
+      var doubleGold = 1;
+    }
+    function goldAmount()
+    {
+      // enemy will drop 1-5 gold
+      return (1+(Math.floor(Math.random()*5)));
+    }
+    function randomNum()
+    {
+      // returns true if random number is 1 (10% chance)
+      var num = Math.floor(Math.random()*10);
+      if (num === 0)
+        return true;
+    }
+    function goldPrintout(goldAmount)
+    {
+      $("#actions").prepend("<div class='characterAction'>.</div>");
+      $("#actions").prepend("<div class='extraAction characterAction'>"+enemy.getName()+" drops "+goldAmount+" Gold</div>");
+      actionFade();
+      console.log("player gold before: "+player.getGold());
+      player.setGold("add", goldAmount);
+      console.log("goldAmount: "+goldAmount);
+      console.log("player gold after: "+player.getGold());
     }
   }
 }
