@@ -18,6 +18,7 @@ class Fight
     var ultimateBlock = 1;
     var critical = 1;
     var doubleGold = 1;
+    var powerUpDmg = player.getPowerDmg();
     var actionsArray = [];
     // add action buttons to screen
     addButtons();
@@ -35,11 +36,8 @@ class Fight
         resetSpecialRounds();
         // chance of special rounds
         specialRounds();
-        // player can only use light and magic attacks against Harpy
-        if (enemy.getName() === "Harpy")
-          playerAttack(true, false, false, magicAttack);
-        else
-          playerAttack(true, mediumAttack, heavyAttack, magicAttack);
+        // player attack if moves have cooled down
+        playerAttack(true, mediumAttack, heavyAttack, magicAttack);
       }
       else
       {
@@ -55,10 +53,10 @@ class Fight
       {
         $("#attackLight").click(function()
         {
-          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getLightWpn()+"</div>");
+          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+player.getLightWpn()+"</div>");
           // send damage to enemyDefend
           // normal damage multiplied by special rounds
-          enemyDefend((player.getLightDmgTotal()*doubleDamage*doubleLight*critical));
+          enemyDefend((player.getPowerDmg()+(player.getLightDmgTotal()*doubleDamage*doubleLight*critical)));
         });
       }
       if (medium)
@@ -66,10 +64,10 @@ class Fight
         $("#attackMedium").click(function()
         {
           mediumAttack = false;
-          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getMediumWpn()+"</div>");
+          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+player.getMediumWpn()+"</div>");
           // send damage to enemyDefend
           // normal damage multiplied by special rounds
-          enemyDefend((player.getMediumDmgTotal()*doubleDamage*doubleMedium*critical));
+          enemyDefend((player.getPowerDmg()+(player.getMediumDmgTotal()*doubleDamage*doubleMedium*critical)));
         });
       }
       if (heavy)
@@ -77,10 +75,10 @@ class Fight
         $("#attackHeavy").click(function()
         {
           heavyAttack = false;
-          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getHeavyWpn()+"</div>");
+          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+player.getHeavyWpn()+"</div>");
           // send damage to enemyDefend
           // normal damage multiplied by special rounds
-          enemyDefend((player.getHeavyDmgTotal()*doubleDamage*doubleHeavy*critical));
+          enemyDefend((player.getPowerDmg()+(player.getHeavyDmgTotal()*doubleDamage*doubleHeavy*critical)));
         });
       }
       if (magic)
@@ -88,10 +86,10 @@ class Fight
         $("#attackMagic").click(function()
         {
           magicAttack = false;
-          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getMagic()+"</div>");
+          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+player.getMagic()+"</div>");
           // send damage to enemyDefend
           // normal damage multiplied by special rounds
-          enemyDefend((player.getMagicDmgTotal()*doubleDamage*critical));
+          enemyDefend((player.getPowerDmg()+(player.getMagicDmgTotal()*doubleDamage*critical)));
         });
       }
     }
@@ -189,6 +187,8 @@ class Fight
       else
       {
         console.log("enemy died");
+        goldPrintout(victoryGold());
+        actionPrintouts();
         // implement back to MainGame here
       }
       function enemyAttackLight()
@@ -242,8 +242,12 @@ class Fight
       else
       {
         // enemy receives full damage
+        // check for critical hit
+        checkForCritical();
         actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+receivingDmg+" damage to "+enemy.getName()+"</div>");
-        // gold drop amount here
+        // enemy has 10% of dropping gold if it is hit
+        if (randomNum())
+          goldPrintout(goldAmount());
         enemy.setHealth("sub", receivingDmg);
         showHealthLevels();
         enemyAttack();
@@ -262,6 +266,8 @@ class Fight
         // enemy recieves partial damage
         else
         {
+          // check for critical hit
+          checkForCritical();
           actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" blocks "+damageBlocked+" damage with Shield</div>");
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+(receivingDmg-damageBlocked)+" damage to "+enemy.getName()+"</div>");
           // enemy has 10% of dropping gold if it is hit
@@ -286,6 +292,8 @@ class Fight
         else
         {
           actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" unsuccessfully dodged your attack</div>");
+          // check for critical hit
+          checkForCritical();
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+receivingDmg+" damage to "+enemy.getName()+"</div>");
           // enemy has 10% of dropping gold if it is hit
           if (randomNum())
@@ -309,12 +317,6 @@ class Fight
         magicAttack = true;
       }
       $("#actions").prepend("<div class='playerAction characterAction'>"+player.getName()+" attack!</div>");
-      // if enemy is Harpy only allow light attacks
-      if (enemy.getName() === "Harpy")
-      {
-        $("#attackMedium").toggleClass("click noClick");
-        $("#attackHeavy").toggleClass("click noClick");
-      }
     }
     function addStats()
     {
@@ -346,15 +348,7 @@ class Fight
     }
     function toggleClasses()
     {
-      // if enemy is Harpy only allow light and magic attacks
-      // if (enemy.getName() === "Harpy")
-        $("#attackLight").toggleClass("click noClick").unbind("click");
-      // else
-      // {
-      //   $("#attackLight").toggleClass("click noClick").unbind("click");
-      //   $("#attackMedium").toggleClass("click noClick").unbind("click");
-      //   $("#attackHeavy").toggleClass("click noClick").unbind("click");
-      // }
+      $("#attackLight").toggleClass("click noClick").unbind("click");
       $("#block").toggleClass("click noClick").unbind("click");
       $("#dodge").toggleClass("click noClick").unbind("click");
     }
@@ -438,6 +432,11 @@ class Fight
       // enemy will drop 1-5 gold
       return (1+(Math.floor(Math.random()*5)));
     }
+    function victoryGold()
+    {
+      // enemy drop 15 times its level with a range of 10 gold
+      return ((enemy.getLevel()*15)+(Math.floor(Math.random()*10)));
+    }
     function randomNum()
     {
       // returns true if random number is 1 (10% chance)
@@ -447,13 +446,11 @@ class Fight
     }
     function goldPrintout(goldAmount)
     {
-      $("#actions").prepend("<div class='characterAction'>.</div>");
-      $("#actions").prepend("<div class='extraAction characterAction'>"+enemy.getName()+" drops "+goldAmount+" Gold</div>");
-      actionFade();
+      actionsArray.push("<div class='extraAction characterAction'>"+enemy.getName()+" drops "+goldAmount+" Gold</div>");
       console.log("player gold before: "+player.getGold());
       // normal gold multiplied by doubleGold
       player.setGold("add", (goldAmount*doubleGold));
-      console.log("goldAmount: "+goldAmount);
+      console.log("goldAmount: "+(goldAmount*doubleGold));
       console.log("player gold after: "+player.getGold());
     }
     function actionPrintouts()
@@ -508,6 +505,11 @@ class Fight
         $("#attackMedium").removeClass("noClick").unbind("click");
         $("#attackMedium").addClass("click");
       }
+    }
+    function checkForCritical()
+    {
+      if (critical === 2)
+        actionsArray.push("<div class='extraAction characterAction'>CRITICAL HIT!</div>");
     }
   }
 }
