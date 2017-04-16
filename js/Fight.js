@@ -4,8 +4,13 @@ class Fight
   // this is where all dom manipulation for fight happens
   fight(player, enemy)
   {
+    // initial variable values
     var magicCount = 4;
+    var heavyCount = 3;
+    var mediumCount = 2;
     var magicAttack = false;
+    var heavyAttack = true;
+    var mediumAttack = true;
     var doubleDamage = 1;
     var doubleLight = 1;
     var doubleMedium = 1;
@@ -18,28 +23,23 @@ class Fight
     addButtons();
     // add player and enemy stats to left and right bars
     addStats();
+    // main game loop
     gameLoop();
-    // implement dodge and attack with coresponding weapon, only inflict damage if dodge was successful?
     function gameLoop()
     {
       if(player.getHealth() > 0)
       {
-        // magic can only be used once every 4 moves
-        if (magicAttack === false)
-        {
-          $("#attackMagic").removeClass("click").unbind("click");
-          $("#attackMagic").addClass("noClick").unbind("click");
-          magicCount++;
-        }
-        if (magicCount % 4 === 0)
-        {
-          magicAttack = true;
-          $("#attackMagic").removeClass("noClick").unbind("click");
-          $("#attackMagic").addClass("click").unbind("click");
-        }
+        // check and update medium heavy and magic cool downs
+        checkCoolDownMoves();
+        // reset special round numbers to normal
         resetSpecialRounds();
+        // chance of special rounds
         specialRounds();
-        playerAttack(true, (enemy.getName() !== "Harpy"), (enemy.getName() !== "Harpy"), magicAttack);
+        // player can only use light and magic attacks against Harpy
+        if (enemy.getName() === "Harpy")
+          playerAttack(true, false, false, magicAttack);
+        else
+          playerAttack(true, mediumAttack, heavyAttack, magicAttack);
       }
       else
       {
@@ -47,7 +47,7 @@ class Fight
         // implement back to MainGame here
       }
     }
-    // if these arguments are true, player can click on buttons
+    // if these arguments are true, player can click on corresponding buttons
     // player attacks here
     function playerAttack(light, medium, heavy, magic)
     {
@@ -56,7 +56,6 @@ class Fight
         $("#attackLight").click(function()
         {
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getLightWpn()+"</div>");
-          
           // send damage to enemyDefend
           // normal damage multiplied by special rounds
           enemyDefend((player.getLightDmgTotal()*doubleDamage*doubleLight*critical));
@@ -66,8 +65,8 @@ class Fight
       {
         $("#attackMedium").click(function()
         {
+          mediumAttack = false;
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getMediumWpn()+"</div>");
-          
           // send damage to enemyDefend
           // normal damage multiplied by special rounds
           enemyDefend((player.getMediumDmgTotal()*doubleDamage*doubleMedium*critical));
@@ -77,8 +76,8 @@ class Fight
       {
         $("#attackHeavy").click(function()
         {
+          heavyAttack = false;
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getHeavyWpn()+"</div>");
-          
           // send damage to enemyDefend
           // normal damage multiplied by special rounds
           enemyDefend((player.getHeavyDmgTotal()*doubleDamage*doubleHeavy*critical));
@@ -90,7 +89,6 @@ class Fight
         {
           magicAttack = false;
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getMagic()+"</div>");
-          
           // send damage to enemyDefend
           // normal damage multiplied by special rounds
           enemyDefend((player.getMagicDmgTotal()*doubleDamage*critical));
@@ -102,17 +100,20 @@ class Fight
     {
       // can only click on defend options
       $("#attackMagic").removeClass("click").unbind("click");
-      $("#attackMagic").addClass("noClick").unbind("click");
+      $("#attackMagic").addClass("noClick");
+      $("#attackHeavy").removeClass("click").unbind("click");
+      $("#attackHeavy").addClass("noClick");
+      $("#attackMedium").removeClass("click").unbind("click");
+      $("#attackMedium").addClass("noClick");
       toggleClasses();
       $("#block").click(function()
       {
-        var damageBlocked = player.getShieldDmgTotal();
+        var damageBlocked = (player.getShieldDmgTotal()*ultimateBlock);
+        // player blocks all damage
         if (damageBlocked >= receivingDmg)
         {
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" blocks "+receivingDmg+" damage with "+player.getShield()+"</div>");
-          
           actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts 0 damage to "+player.getName()+"</div>");
-          
           showHealthLevels();
           // print actions
           actionPrintouts();
@@ -120,12 +121,11 @@ class Fight
           toggleClasses();
           gameLoop();
         }
+        // player receives partial damage
         else
         {
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" blocks "+damageBlocked+" damage with "+player.getShield()+"</div>");
-          
           actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts "+(receivingDmg-damageBlocked)+" damage to "+player.getName()+"</div>");
-          
           player.setHealth("sub", (receivingDmg-damageBlocked));
           showHealthLevels();
           // print actions
@@ -141,9 +141,7 @@ class Fight
         if (player.getDodged())
         {
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" successfully dodged the attack</div>");
-          
           actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts 0 damage to "+player.getName()+"</div>");
-          
           showHealthLevels();
           // print actions
           actionPrintouts();
@@ -155,9 +153,7 @@ class Fight
         else
         {
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" unsuccessfully dodged the attack</div>");
-          
           actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts "+receivingDmg+" damage to "+player.getName()+"</div>");
-          
           player.setHealth("sub", receivingDmg);
           showHealthLevels();
           // print actions
@@ -247,7 +243,6 @@ class Fight
       {
         // enemy receives full damage
         actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+receivingDmg+" damage to "+enemy.getName()+"</div>");
-        
         // gold drop amount here
         enemy.setHealth("sub", receivingDmg);
         showHealthLevels();
@@ -260,9 +255,7 @@ class Fight
         if (damageBlocked >= receivingDmg)
         {
           actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" blocks "+receivingDmg+" damage with Shield</div>");
-          
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" inflicts 0 damage to "+enemy.getName()+"</div>");
-          
           showHealthLevels();
           enemyAttack();
         }
@@ -270,9 +263,7 @@ class Fight
         else
         {
           actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" blocks "+damageBlocked+" damage with Shield</div>");
-          
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+(receivingDmg-damageBlocked)+" damage to "+enemy.getName()+"</div>");
-          
           // enemy has 10% of dropping gold if it is hit
           if (randomNum())
             goldPrintout(goldAmount());
@@ -287,9 +278,7 @@ class Fight
         if (enemy.getDodged())
         {
           actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" successfully dodged your attack</div>");
-          
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" inflicts 0 damage to "+enemy.getName()+"</div>");
-          
           showHealthLevels();
           enemyAttack();
         }
@@ -297,9 +286,7 @@ class Fight
         else
         {
           actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" unsuccessfully dodged your attack</div>");
-          
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" inflicts "+receivingDmg+" damage to "+enemy.getName()+"</div>");
-          
           // enemy has 10% of dropping gold if it is hit
           if (randomNum())
             goldPrintout(goldAmount());
@@ -359,15 +346,15 @@ class Fight
     }
     function toggleClasses()
     {
-      // if enemy is Harpy only allow light attacks
-      if (enemy.getName() === "Harpy")
+      // if enemy is Harpy only allow light and magic attacks
+      // if (enemy.getName() === "Harpy")
         $("#attackLight").toggleClass("click noClick").unbind("click");
-      else
-      {
-        $("#attackLight").toggleClass("click noClick").unbind("click");
-        $("#attackMedium").toggleClass("click noClick").unbind("click");
-        $("#attackHeavy").toggleClass("click noClick").unbind("click");
-      }
+      // else
+      // {
+      //   $("#attackLight").toggleClass("click noClick").unbind("click");
+      //   $("#attackMedium").toggleClass("click noClick").unbind("click");
+      //   $("#attackHeavy").toggleClass("click noClick").unbind("click");
+      // }
       $("#block").toggleClass("click noClick").unbind("click");
       $("#dodge").toggleClass("click noClick").unbind("click");
     }
@@ -375,9 +362,7 @@ class Fight
     {
       actionsArray.push("<div class='characterAction'>.</div>");
       actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" HP: "+enemy.getHealth()+"</div>");
-      
       actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" HP: "+player.getHealth()+"</div>");
-      
       actionsArray.push("<div class='characterAction'>.</div>");
     }
     function actionFade()
@@ -440,13 +425,13 @@ class Fight
     }
     function resetSpecialRounds()
     {
-      var doubleDamage = 1;
-      var doubleLight = 1;
-      var doubleMedium = 1;
-      var doubleHeavy = 1;
-      var ultimateBlock = 1;
-      var critical = 1;
-      var doubleGold = 1;
+      doubleDamage = 1;
+      doubleLight = 1;
+      doubleMedium = 1;
+      doubleHeavy = 1;
+      ultimateBlock = 1;
+      critical = 1;
+      doubleGold = 1;
     }
     function goldAmount()
     {
@@ -473,12 +458,56 @@ class Fight
     }
     function actionPrintouts()
     {
+      // actions printout at end of enemyAttack and at end of playerDefend
       actionsArray.forEach(function(item)
       {
         $("#actions").prepend(item);
         actionFade();
       });
       actionsArray = [];
+    }
+    function checkCoolDownMoves()
+    {
+      // magic can only be used once every 4 moves
+      // heavy can only be used once every 3 moves
+      // medium can only be used once every 2 moves
+      // light can be used every move
+      if (magicAttack === false)
+      {
+        $("#attackMagic").removeClass("click").unbind("click");
+        $("#attackMagic").addClass("noClick");
+        magicCount++;
+      }
+      if (magicCount % 4 === 0)
+      {
+        magicAttack = true;
+        $("#attackMagic").removeClass("noClick").unbind("click");
+        $("#attackMagic").addClass("click");
+      }
+      if (heavyAttack === false)
+      {
+        $("#attackHeavy").removeClass("click").unbind("click");
+        $("#attackHeavy").addClass("noClick");
+        heavyCount++;
+      }
+      if (heavyCount % 3 === 0)
+      {
+        heavyAttack = true;
+        $("#attackHeavy").removeClass("noClick").unbind("click");
+        $("#attackHeavy").addClass("click");
+      }
+      if (mediumAttack === false)
+      {
+        $("#attackMedium").removeClass("click").unbind("click");
+        $("#attackMedium").addClass("noClick");
+        mediumCount++;
+      }
+      if (mediumCount % 2 === 0)
+      {
+        mediumAttack = true;
+        $("#attackMedium").removeClass("noClick").unbind("click");
+        $("#attackMedium").addClass("click");
+      }
     }
   }
 }
