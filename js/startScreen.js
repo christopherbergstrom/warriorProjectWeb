@@ -9,8 +9,8 @@ $(document).ready(function()
     var gameScreen = new GameScreen();
     gameScreen.makeGameScreen();
     // start game
-    var game = new MainGame();
-    game.start();
+    var city = new City();
+    city.start();
   });
   // view instructions
   $("#bottomInstructions").click(function()
