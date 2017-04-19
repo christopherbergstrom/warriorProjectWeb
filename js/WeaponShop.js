@@ -8,4 +8,12 @@ class WeaponShop
   {
     
   }
+  loadout()
+  {
+    
+  }
+  purchased()
+  {
+    
+  }
 }
