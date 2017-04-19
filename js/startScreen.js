@@ -5,9 +5,6 @@ $(document).ready(function()
   {
     // remove start screen
     $("#startScreen").remove();
-    // create game screen
-    var gameScreen = new GameScreen();
-    gameScreen.makeGameScreen();
     // start game
     var city = new City();
     city.start();
@@ -15,10 +12,8 @@ $(document).ready(function()
   // view instructions
   $("#bottomInstructions").click(function()
   {
-    instructions();
+    // inplement instructions here
+    var instructions = new Instructions();
+    instructions.instructions();
   });
-  function instructions()
-  {
-    // implement instructions here
-  }
 });
