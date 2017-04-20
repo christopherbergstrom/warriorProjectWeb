@@ -18,24 +18,38 @@ class City
   returnToCity(player, createCharacter, fight, weaponShop, gameScreen, instructions)
   {
     gameScreen.makeCity();
-    // fight.fight(player, createCharacter.one());
-    // fight.fight(player, createCharacter.practice(player.getHealth(), player.getLightDmg(), player.getLightRng(), player.getMediumDmg(), player.getMediumRng(), player.getHeavyDmg(), player.getHeavyRng(), player.getShieldDmg(), player.getShieldRng(), player.getDodge()));
     // implement city fuctions here, talk to people, weapon shop, practice arena, instructions
     // battle, practice arena, weapon shop
     // talk to locals, instructions
-    function talkToLocals()
+    $("#battle").click(battle);
+    $("#practiceArena").click(practiceArena);
+    $("#weaponShop").click(goToWeaponShop);
+    $("#talkToLocals").click(talkToLocals);
+    $("#instructions").click(viewInstructions);
+    function battle()
     {
-      
+      gameScreen.makeFightSelection(player.getLevel());
+      $("#one").click(fight.fight(player, createCharacter.one()));
+      $("#two").click(fight.fight(player, createCharacter.two()));
+      $("#three").click(fight.fight(player, createCharacter.three()));
+      $("#four").click(fight.fight(player, createCharacter.four()));
+      $("#five").click(fight.fight(player, createCharacter.five()));
+      $("#six").click(fight.fight(player, createCharacter.six()));
+      $("#seven").click(fight.fight(player, createCharacter.seven()));
+      $("#eight").click(fight.fight(player, createCharacter.eight()));
+      $("#nine").click(fight.fight(player, createCharacter.nine()));
+      $("#ten").click(fight.fight(player, createCharacter.ten()));
+    }
+    function practiceArena()
+    {
+      gameScreen.makeGameScreen();
+      fight.fight(player, createCharacter.practice(player.getHealth(), player.getLightDmg(), player.getLightRng(), player.getMediumDmg(), player.getMediumRng(), player.getHeavyDmg(), player.getHeavyRng(), player.getShieldDmg(), player.getShieldRng(), player.getDodge()));
     }
     function goToWeaponShop()
     {
       
     }
-    function battle()
-    {
-      
-    }
-    function practiceArena()
+    function talkToLocals()
     {
       
     }
