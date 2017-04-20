@@ -1,9 +1,8 @@
 class GameScreen
 {
-  constructor(player, enemy)
+  constructor(player)
   {
     this.player = player;
-    this.enemy = enemy;
   }
   makeGameScreen()
   {
@@ -20,50 +19,64 @@ class GameScreen
   }
   makeCity()
   {
-    this.clearScreen();
+    // this.clearScreen();
+    $("body").empty();
     var battle = "<div class='col-md-4 topAndBottom topButtons text' id='battle'>Battle</div>";
     var practiceArena = "<div class='col-md-4 topAndBottom topButtons text' id='practiceArena'>Practice Arena</div>";
     var weaponShop = "<div class='col-md-4 topAndBottom topButtons text' id='weaponShop'>Weapon Shop</div>";
     var talkToLocals = "<div class='col-md-6 topAndBottom bottomButtons text' id='talkToLocals'>Talk to Locals</div>";
     var instructions = "<div class='col-md-6 topAndBottom bottomButtons text' id='instructions'>Instructions</div>";
-    $("body").append("<div class='container-fluid'></div>")
+    $("body").append("<div class='container-fluid'></div>");
     $(".container-fluid").append("<div class='row'>"+battle+practiceArena+weaponShop+"</div>");
     $(".container-fluid").append("<div class='row'>"+talkToLocals+instructions+"</div>");
   }
   makeFightSelection(level)
   {
-    var top = [];
-    var bottom = [];
+    // clears out old container
     $(".container-fluid").empty();
+    var row1 = [];
+    var row2 = [];
+    var row3 = [];
+    var row4 = [];
     if (level >= 1)
-      top.push("<div class='col-md-2 topAndBottom enemySelection text' id='one'>Skeleton Archer</div>");
+      row1.push("<div class='col-md-4 topAndBottom enemySelection' id='one'>Skeleton Archer</div>");
     if (level >= 2)
-      top.push("<div class='col-md-1 topAndBottom enemySelection text' id='two'>Undead Soldier</div>");
+      row1.push("<div class='col-md-4 topAndBottom enemySelection' id='two'>Undead Soldier</div>");
     if (level >= 3)
-      top.push("<div class='col-md-1 topAndBottom enemySelection text' id='three'>Harpy</div>");
+      row1.push("<div class='col-md-4 topAndBottom enemySelection' id='three'>Harpy</div>");
     if (level >= 4)
-      top.push("<div class='col-md-1 topAndBottom enemySelection text' id='four'>Gorgon</div>");
+      row2.push("<div class='col-md-4 topAndBottom enemySelection' id='four'>Gorgon</div>");
     if (level >= 5)
-      top.push("<div class='col-md-2 topAndBottom enemySelection text' id='five'>Centaur</div>");
+      row2.push("<div class='col-md-4 topAndBottom enemySelection' id='five'>Centaur</div>");
     if (level >= 6)
-      bottom.push("<div class='col-md-2 topAndBottom enemySelection text' id='six'>Cerberus Dog</div>");
+      row2.push("<div class='col-md-4 topAndBottom enemySelection' id='six'>Cerberus Dog</div>");
     if (level >= 7)
-      bottom.push("<div class='col-md-1 topAndBottom enemySelection text' id='seven'>Giant Spider</div>");
+      row3.push("<div class='col-md-4 topAndBottom enemySelection' id='seven'>Giant Spider</div>");
     if (level >= 8)
-      bottom.push("<div class='col-md-1 topAndBottom enemySelection text' id='eight'>Mintaur</div>");
+      row3.push("<div class='col-md-4 topAndBottom enemySelection' id='eight'>Mintaur</div>");
     if (level >= 9)
-      bottom.push("<div class='col-md-1 topAndBottom enemySelection text' id='nine'>Cyclops</div>");
+      row3.push("<div class='col-md-4 topAndBottom enemySelection' id='nine'>Cyclops</div>");
     if (level >= 10)
-      bottom.push("<div class='col-md-2 topAndBottom enemySelection text' id='ten'>Dragon</div>");
-    $(".container-fluid").append("<div class='row'></div>");
-    top.forEach(function(item)
+      row4.push("<div class='col-md-12 topAndBottom enemySelection' id='ten'>Dragon</div>");
+    $(".container-fluid").append("<div class='row' id='row1'></div>");
+    row1.forEach(function(item)
     {
-      $(".row").append(item);
+      $("#row1").append(item);
     });
-    $(".container-fluid").append("<div class='row' id='bottomRow'></div>");
-    bottom.forEach(function(item)
+    $(".container-fluid").append("<div class='row' id='row2'></div>");
+    row2.forEach(function(item)
     {
-      $("#bottomRow").append(item);
+      $("#row2").append(item);
+    });
+    $(".container-fluid").append("<div class='row' id='row3'></div>");
+    row3.forEach(function(item)
+    {
+      $("#row3").append(item);
+    });
+    $(".container-fluid").append("<div class='row' id='row4'></div>");
+    row4.forEach(function(item)
+    {
+      $("#row4").append(item);
     });
   }
   clearScreen()
