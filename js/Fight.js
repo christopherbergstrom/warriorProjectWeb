@@ -4,6 +4,7 @@ class Fight
   // this is where all dom manipulation for fight happens
   fight(player, enemy)
   {
+    var city = new City();
     // initial variable values
     var magicCount = 4;
     var heavyCount = 3;
@@ -55,7 +56,7 @@ class Fight
         {
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+player.getLightWpn()+"</div>");
           // send damage to enemyDefend
-          // normal damage multiplied by special rounds
+          // normal damage multiplied by special rounds plus powerup
           enemyDefend((player.getPowerDmg()+(player.getLightDmgTotal()*doubleDamage*doubleLight*critical)));
         });
       }
@@ -66,7 +67,7 @@ class Fight
           mediumAttack = false;
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+player.getMediumWpn()+"</div>");
           // send damage to enemyDefend
-          // normal damage multiplied by special rounds
+          // normal damage multiplied by special rounds plus powerup
           enemyDefend((player.getPowerDmg()+(player.getMediumDmgTotal()*doubleDamage*doubleMedium*critical)));
         });
       }
@@ -77,7 +78,7 @@ class Fight
           heavyAttack = false;
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+player.getHeavyWpn()+"</div>");
           // send damage to enemyDefend
-          // normal damage multiplied by special rounds
+          // normal damage multiplied by special rounds plus powerup
           enemyDefend((player.getPowerDmg()+(player.getHeavyDmgTotal()*doubleDamage*doubleHeavy*critical)));
         });
       }
@@ -88,7 +89,7 @@ class Fight
           magicAttack = false;
           actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+player.getMagic()+"</div>");
           // send damage to enemyDefend
-          // normal damage multiplied by special rounds
+          // normal damage multiplied by special rounds plus powerup
           enemyDefend((player.getPowerDmg()+(player.getMagicDmgTotal()*doubleDamage*critical)));
         });
       }
@@ -189,7 +190,14 @@ class Fight
         console.log("enemy died");
         goldPrintout(victoryGold());
         actionPrintouts();
+        if (player.getLevel() <= enemy.getLevel())
+          player.setLevel(player.getLevel()+1);
+        window.setTimeout(function()
+        {
+          city.returnToCity(player);
+        }, 3000);
         // implement back to MainGame here
+        // return victory, update level
       }
       function enemyAttackLight()
       {
@@ -306,6 +314,15 @@ class Fight
     }
     function addButtons()
     {
+      // main menu btn
+      $("body").prepend("<button id='mainMenuBtn'>M</button>");
+      $("#mainMenuBtn").click(function()
+      {
+        console.log(player);
+        var city = new City();
+        city.returnToCity(player);
+      });
+      // action btns
       $("#screen").append("<button id='attackLight' class='buttonsTop click'>"+player.getLightWpn()+"</button>");
       $("#screen").append("<button id='attackMedium' class='buttonsTop click'>"+player.getMediumWpn()+"</button>");
       $("#screen").append("<button id='attackHeavy' class='buttonsTop click'>"+player.getHeavyWpn()+"</button>");
@@ -343,7 +360,7 @@ class Fight
         $("#enemyStats").append("<div>"+enemy.getFireBreath()+" "+enemy.getFireBreathDmg()+"-"+(enemy.getFireBreathDmg()+(enemy.getFireBreathRng()-1))+"</div>");
       if (enemy.getShield() !== null)
         $("#enemyStats").append("<div>"+enemy.getShield()+" "+enemy.getShieldDmg()+"-"+(enemy.getShieldDmg()+(enemy.getShieldRng()-1))+"</div>");
-      if (enemy.getDodge() !== null)
+      if (enemy.getDodge() !== 0)
         $("#enemyStats").append("<div>Dodge "+enemy.getDodge()+"%</div>");
     }
     function toggleClasses()
