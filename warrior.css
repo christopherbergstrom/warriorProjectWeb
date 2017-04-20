@@ -1,16 +1,17 @@
 body
 {
   font-family: Times New Roman;
+  background-color: #000000;
 }
+/*all buttons except fight buttons*/
 .topAndBottom
 {
-  /*height: 50vh;*/
-  /*width: 100%;*/
   color: #ffffff;
   font-size: 4em;
   transition: 0.25s;
   cursor: pointer;
 }
+/*start btn*/
 #topStart
 {
   background-color: #660000;
@@ -19,6 +20,7 @@ body
 {
   background-color: red;
 }
+/*instructions btn*/
 #bottomInstructions
 {
   background-color: #000066;
@@ -27,6 +29,7 @@ body
 {
   background-color: blue;
 }
+/*top btns in city*/
 .topButtons
 {
   background-color: #660000;
@@ -36,6 +39,7 @@ body
 {
   background-color: red;
 }
+/*bottom btns in city*/
 .bottomButtons
 {
   background-color: #000066;
@@ -45,11 +49,39 @@ body
 {
   background-color: blue;
 }
+/*text in btns*/
 .text
 {
   text-align: center;
   vertical-align: middle;
   line-height: 50vh;
+}
+.enemySelection
+{
+  background-color: #660000;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 25vh;
+}
+.enemySelection:hover
+{
+  background-color: red;
+}
+#mainMenuBtn
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 2em;
+  height: 2em;
+  background-color: #000000;
+  color: #ffffff;
+  z-index: 100;
+}
+#mainMenuBtn:hover
+{
+  cursor: pointer;
 }
 #playerStats
 {
@@ -58,7 +90,7 @@ body
   height: 100vh;
   left: 0;
   top: 0;
-  border-right: 1px solid black;
+  border-right: 1px solid #ffffff;
 }
 #enemyStats
 {
@@ -67,16 +99,22 @@ body
   height: 100vh;
   right: 0;
   top: 0;
-  border-left: 1px solid black;
+  border-left: 1px solid #ffffff;
 }
 #playerStats div, #enemyStats div
 {
   /*position: relative;*/
+  color: #ffffff;
   font-size: 1.5em;
   margin-left: 10%;
-  margin-top: 5%;
+  margin-top: 10%;
   /*text-align: center;*/
 }
+#playerStats div:first-child, #enemyStats div:first-child
+{
+  font-weight: bold;
+}
+/*where action btns are*/
 #screen
 {
   position: absolute;
@@ -85,6 +123,7 @@ body
   left: 20vw;
   top: 0;
 }
+/*where action printouts are*/
 #actions
 {
   position: absolute;
@@ -114,21 +153,23 @@ body
 {
   color: yellow;
 }
+/*fight btns top*/
 .buttonsTop
 {
   position: absolute;
   width: 25%;
   height: 50%;
-  border: 1px solid black;
+  border: 1px solid #ffffff;
   text-align: center;
   font-size: 1.5em;
 }
+/*fight btns bottom*/
 .buttonsBottom
 {
   position: absolute;
   width: 50%;
   height: 50%;
-  border: 1px solid black;
+  border: 1px solid #ffffff;
   text-align: center;
   font-size: 2em;
 }
@@ -164,10 +205,15 @@ body
 }
 .click
 {
-  color: white;
+  color: #ffffff;
   background-color: #6666ff;
   transition: .25s;
   cursor: pointer;
+}
+.click:hover
+{
+  color: #000000;
+  background-color: #ccccff;
 }
 .noClick
 {
