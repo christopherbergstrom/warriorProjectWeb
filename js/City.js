@@ -40,47 +40,47 @@ class City
       $("#two").click(function()
       {
         gameScreen.makeGameScreen();
-        fight.fight(player, createCharacter.two())
+        fight.fight(player, createCharacter.two());
       });
       $("#three").click(function()
       {
         gameScreen.makeGameScreen();
-        fight.fight(player, createCharacter.three())
+        fight.fight(player, createCharacter.three());
       });
       $("#four").click(function()
       {
         gameScreen.makeGameScreen();
-        fight.fight(player, createCharacter.four())
+        fight.fight(player, createCharacter.four());
       });
       $("#five").click(function()
       {
         gameScreen.makeGameScreen();
-        fight.fight(player, createCharacter.five())
+        fight.fight(player, createCharacter.five());
       });
       $("#six").click(function()
       {
         gameScreen.makeGameScreen();
-        fight.fight(player, createCharacter.six())
+        fight.fight(player, createCharacter.six());
       });
       $("#seven").click(function()
       {
         gameScreen.makeGameScreen();
-        fight.fight(player, createCharacter.seven())
+        fight.fight(player, createCharacter.seven());
       });
       $("#eight").click(function()
       {
         gameScreen.makeGameScreen();
-        fight.fight(player, createCharacter.eight())
+        fight.fight(player, createCharacter.eight());
       });
       $("#nine").click(function()
       {
         gameScreen.makeGameScreen();
-        fight.fight(player, createCharacter.nine())
+        fight.fight(player, createCharacter.nine());
       });
       $("#ten").click(function()
       {
         gameScreen.makeGameScreen();
-        fight.fight(player, createCharacter.ten())
+        fight.fight(player, createCharacter.ten());
       });
     }
     function practiceArena()
@@ -90,7 +90,14 @@ class City
     }
     function goToWeaponShop()
     {
-      
+      gameScreen.makeWeaponShop();
+      // main menu btn
+      $("body").prepend("<button id='mainMenuBtn'>M</button>");
+      $("#mainMenuBtn").click(function()
+      {
+        var city = new City();
+        city.returnToCity(player);
+      });
     }
     function talkToLocals()
     {
