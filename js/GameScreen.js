@@ -79,6 +79,87 @@ class GameScreen
       $("#row4").append(item);
     });
   }
+  makeWeaponShop()
+  {
+    // clears out old container
+    $(".container-fluid").empty();
+    // row1
+    $(".container-fluid").append("<div class='row' id='row1'></div>");
+    // light weapons
+    $("#row1").append("<div class='col-md-4 topAndBottom weaponCategory' id='light'>Light Weapons</div>");
+    // medium weapons
+    $("#row1").append("<div class='col-md-4 topAndBottom weaponCategory' id='medium'>Medium Weapons</div>");
+    // heavy weapons
+    $("#row1").append("<div class='col-md-4 topAndBottom weaponCategory' id='heavy'>Heavy Weapons</div>");
+    // row2
+    $(".container-fluid").append("<div class='row' id='row2'></div>");
+    // shields
+    $("#row2").append("<div class='col-md-4 topAndBottom weaponCategory' id='shield'>Shields</div>");
+    // power ups
+    $("#row2").append("<div class='col-md-4 topAndBottom weaponCategory' id='power'>Power Ups</div>");
+    // magic
+    $("#row2").append("<div class='col-md-4 topAndBottom weaponCategory' id='magic'>Magic</div>");
+    // row3
+    $(".container-fluid").append("<div class='row' id='row3'></div>");
+    // row4
+    $(".container-fluid").append("<div class='row' id='row4'></div>");
+    $("#light").click(light);
+    $("#medium").click(medium);
+    $("#heavy").click(heavy);
+    $("#shield").click(shield);
+    $("#power").click(power);
+    $("#magic").click(magic);
+    function light()
+    {
+      removeWeapons();
+      $("#row3").append("<div class='col-md-3 weaponSelect' id='L1'>Blow Darts</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect' id='L2'>Throwing Knives</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect' id='L3'>Throwing Axe</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect' id='L4'>Mystical Bow</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='L5'>Crossbow</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='L6'>Javelin</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='L7'>Recurve Bow</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='L8'>Long Bow</div>");
+      showWeapons();
+    }
+    function medium()
+    {
+      removeWeapons();
+      $("#row3").append("<div class='col-md-4 weaponSelect' id='M1'>Chain Whip</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect' id='M2'>Ring Sword</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect' id='M3'>Staff</div>");
+      $("#row4").append("<div class='col-md-4 weaponSelect' id='M4'>Cestus</div>");
+      $("#row4").append("<div class='col-md-4 weaponSelect' id='M5'>Spiked Chain</div>");
+      $("#row4").append("<div class='col-md-4 weaponSelect' id='M6'>Meteor Hammer</div>");
+      showWeapons();
+    }
+    function heavy()
+    {
+      
+    }
+    function shield()
+    {
+      
+    }
+    function power()
+    {
+      
+    }
+    function magic()
+    {
+      
+    }
+    function removeWeapons()
+    {
+      $("#row3").empty();
+      $("#row4").empty();
+    }
+    function showWeapons()
+    {
+      $("#row3").hide().fadeIn("medium");
+      $("#row4").hide().fadeIn("medium");
+    }
+  }
   clearScreen()
   {
     $("body").empty();
