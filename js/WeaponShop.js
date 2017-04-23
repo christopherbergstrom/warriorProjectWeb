@@ -1,10 +1,10 @@
 class WeaponShop
 {
-  buy()
+  constructor(player)
   {
-    
+    this.player = player;
   }
-  upgrade(weapon)
+  buy()
   {
     
   }
@@ -12,8 +12,15 @@ class WeaponShop
   {
     
   }
-  purchased()
+  stats(weapon)
   {
+    // light weapons
+    if (weapon === "Blow Darts")
+      return (1 + (player.getLevel()*2));
+    // medium weapons
     
+    // heavy weapons
+    
+    // shields
   }
 }
