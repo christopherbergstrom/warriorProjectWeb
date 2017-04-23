@@ -44,6 +44,13 @@ class Fight
       {
         console.log("player died");
         // implement back to MainGame here
+        actionsArray.push("<div class='extraAction characterAction'>Defeat</div>");
+        actionPrintouts();
+        resetHealth();
+        window.setTimeout(function()
+        {
+          city.returnToCity(player);
+        }, 3000);
       }
     }
     // if these arguments are true, player can click on corresponding buttons
@@ -188,10 +195,15 @@ class Fight
       else
       {
         console.log("enemy died");
+        actionsArray.push("<div class='extraAction characterAction'>Victory!</div>");
         goldPrintout(victoryGold());
         actionPrintouts();
         if (player.getLevel() <= enemy.getLevel())
+        {
           player.setLevel(player.getLevel()+1);
+          resetHealth();
+          upgradeStats();
+        }
         window.setTimeout(function()
         {
           city.returnToCity(player);
@@ -527,6 +539,14 @@ class Fight
     {
       if (critical === 2)
         actionsArray.push("<div class='extraAction characterAction'>CRITICAL HIT!</div>");
+    }
+    function resetHealth()
+    {
+      // health = player.getLevel()*250
+    }
+    function upgradeStats()
+    {
+      // weapons += upgrade range
     }
   }
 }
