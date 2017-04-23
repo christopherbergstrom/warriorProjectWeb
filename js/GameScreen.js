@@ -79,7 +79,7 @@ class GameScreen
       $("#row4").append(item);
     });
   }
-  makeWeaponShop()
+  makeWeaponShop(player)
   {
     // clears out old container
     $(".container-fluid").empty();
@@ -121,6 +121,22 @@ class GameScreen
       $("#row4").append("<div class='col-md-3 weaponSelect' id='L7'>Recurve Bow</div>");
       $("#row4").append("<div class='col-md-3 weaponSelect' id='L8'>Long Bow</div>");
       showWeapons();
+      $(".weaponSelect").click(function()
+      {
+        var count = 0;
+        for (var i = 0; i < player.weapons.length; i++)
+        {
+          // console.log($(this).html() === player.weapons[i].name);
+          if ($(this).html() !== player.weapons[i].name)
+            count++;
+        }
+        if (count === player.weapons.length)
+        {
+          console.log("purchasing");
+          player.weapons.push({name:$(this).html(), dmg:10});
+          console.log(player.weapons);
+        }
+      });
     }
     function medium()
     {
