@@ -115,55 +115,71 @@ class GameScreen
       $("#row3").append("<div class='col-md-3 weaponSelect' id='L1'>Blow Darts</div>");
       $("#row3").append("<div class='col-md-3 weaponSelect' id='L2'>Throwing Knives</div>");
       $("#row3").append("<div class='col-md-3 weaponSelect' id='L3'>Throwing Axe</div>");
-      $("#row3").append("<div class='col-md-3 weaponSelect' id='L4'>Mystical Bow</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' id='L5'>Crossbow</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' id='L6'>Javelin</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' id='L7'>Recurve Bow</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' id='L8'>Long Bow</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect' id='L4'>Crossbow</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='L5'>Javelin</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='L6'>Recurve Bow</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='L7'>Long Bow</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='L8'>Mystical Bow</div>");
       showWeapons();
-      $(".weaponSelect").click(function()
-      {
-        var count = 0;
-        for (var i = 0; i < player.weapons.length; i++)
-        {
-          // console.log($(this).html() === player.weapons[i].name);
-          if ($(this).html() !== player.weapons[i].name)
-            count++;
-        }
-        if (count === player.weapons.length)
-        {
-          console.log("purchasing");
-          player.weapons.push({name:$(this).html(), dmg:10});
-          console.log(player.weapons);
-        }
-      });
+      buyEquip();
     }
     function medium()
     {
       removeWeapons();
-      $("#row3").append("<div class='col-md-4 weaponSelect' id='M1'>Chain Whip</div>");
-      $("#row3").append("<div class='col-md-4 weaponSelect' id='M2'>Ring Sword</div>");
-      $("#row3").append("<div class='col-md-4 weaponSelect' id='M3'>Staff</div>");
-      $("#row4").append("<div class='col-md-4 weaponSelect' id='M4'>Cestus</div>");
-      $("#row4").append("<div class='col-md-4 weaponSelect' id='M5'>Spiked Chain</div>");
-      $("#row4").append("<div class='col-md-4 weaponSelect' id='M6'>Meteor Hammer</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect' id='M1'>Chain Whip</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect' id='M2'>Ring Sword</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect' id='M3'>Staff</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect' id='M4'>Cestus</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='M5'>Spiked Chain</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='M6'>Meteor Hammer</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='M7'>Mace</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='M8'>Flail</div>");
       showWeapons();
+      buyEquip();
     }
     function heavy()
     {
-      
+      removeWeapons();
+      $("#row3").append("<div class='col-md-3 weaponSelect' id='H1'>Shortsword</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect' id='H2'>War Hammer</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect' id='H3'>Spear</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect' id='H4'>Trident</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='H5'>Scythe</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='H6'>Battle Axe</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='H7'>Broadsword</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect' id='H8'>Mystical Sword</div>");
+      showWeapons();
+      buyEquip();
     }
     function shield()
     {
-      
+      removeWeapons();
+      $("#row3").append("<div class='col-md-4 weaponSelect' id='S1'>Wood Shield</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect' id='S2'>Iron Shield</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect' id='S3'>Steel Shield</div>");
+      $("#row4").append("<div class='col-md-4 weaponSelect' id='S4'>Silver Shield</div>");
+      $("#row4").append("<div class='col-md-4 weaponSelect' id='S5'>Gold Shield</div>");
+      $("#row4").append("<div class='col-md-4 weaponSelect' id='S6'>Mystical Shield</div>");
+      showWeapons();
+      buyEquip();
     }
     function power()
     {
-      
+      removeWeapons();
+      $("#row3").append("<div class='col-md-4 weaponSelect' id='P1'>Ice</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect' id='P2'>Fire</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect' id='P3'>Lightning</div>");
+      showWeapons();
+      buyEquip();
     }
     function magic()
     {
-      
+      removeWeapons();
+      $("#row3").append("<div class='col-md-4 weaponSelect' id='M1'>Ice Blast</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect' id='M2'>Fire Blast</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect' id='M3'>Lightning Blast</div>");
+      showWeapons();
+      buyEquip();
     }
     function removeWeapons()
     {
@@ -174,6 +190,32 @@ class GameScreen
     {
       $("#row3").hide().fadeIn("medium");
       $("#row4").hide().fadeIn("medium");
+    }
+    function buyEquip()
+    {
+      $(".weaponSelect").click(function()
+      {
+        var count = 0;
+        for (var i = 0; i < player.weapons.length; i++)
+        {
+          console.log($(this).html() === player.weapons[i].name);
+          // if weapon clicked on doesn't match player weapon inventory count ++
+          if ($(this).html() !== player.weapons[i].name)
+            count++;
+        }
+        // if count === number of purchased player weapons, the clicked on weapon has not been purchased
+        if (count === player.weapons.length)
+        {
+          // check if player has enough gold, then purchase
+          console.log("purchasing");
+          player.weapons.push({name:$(this).html(), dmg:10});
+          console.log(player.weapons);
+        }
+        else
+        {
+          console.log("already have this weapon");
+        }
+      });
     }
   }
   clearScreen()
