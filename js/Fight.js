@@ -542,11 +542,17 @@ class Fight
     }
     function resetHealth()
     {
-      // health = player.getLevel()*250
+      // reset player health
+      player.setHealth("", player.getLevel()*250);
     }
     function upgradeStats()
     {
-      // weapons += upgrade range
+      // weapons += upgrade, use weaponshop.stats() for this
+      var weaponShop = new WeaponShop(player);
+      player.setLightDmg(weaponShop.stats(player.getLightWpn()));
+      player.setMediumDmg(weaponShop.stats(player.getMediumWpn()));
+      player.setHeavyDmg(weaponShop.stats(player.getHeavyWpn()));
+      player.setMagicDmg(weaponShop.stats(player.getMagic()));
     }
   }
 }
