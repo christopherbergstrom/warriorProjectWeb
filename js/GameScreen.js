@@ -1,9 +1,5 @@
 class GameScreen
 {
-  constructor(player)
-  {
-    this.player = player;
-  }
   makeGameScreen()
   {
     this.clearScreen();
@@ -79,7 +75,7 @@ class GameScreen
       $("#row4").append(item);
     });
   }
-  makeWeaponShop(player)
+  makeWeaponShop(player, weaponShop)
   {
     // clears out old container
     $(".container-fluid").empty();
@@ -195,10 +191,12 @@ class GameScreen
     {
       $(".weaponSelect").click(function()
       {
+        console.log(player);
+        console.log("player level:"+player.getLevel());
         var count = 0;
         for (var i = 0; i < player.weapons.length; i++)
         {
-          console.log($(this).html() === player.weapons[i].name);
+          // console.log($(this).html() === player.weapons[i].name);
           // if weapon clicked on doesn't match player weapon inventory count ++
           if ($(this).html() !== player.weapons[i].name)
             count++;
@@ -207,9 +205,19 @@ class GameScreen
         if (count === player.weapons.length)
         {
           // check if player has enough gold, then purchase
-          console.log("purchasing");
-          player.weapons.push({name:$(this).html(), dmg:10});
-          console.log(player.weapons);
+          if (player.getGold() >= (weaponShop.price($(this).html())))
+          {
+            console.log("purchasing");
+            player.setGold("sub", weaponShop.price($(this).html()));
+            player.weapons.push({name:$(this).html(), dmg:(weaponShop.stats(player, $(this).html()))});
+            console.log(player.weapons);
+          }
+          else
+          {
+            console.log("not enough gold");
+            console.log("player gold: "+player.getGold());
+            console.log("cost: "+weaponShop.price($(this).html()));
+          }
         }
         else
         {
