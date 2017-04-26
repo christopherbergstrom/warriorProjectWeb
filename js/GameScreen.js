@@ -109,72 +109,72 @@ class GameScreen
     function light()
     {
       removeWeapons();
-      $("#row3").append("<div class='col-md-3 weaponSelect' class='Light'>Blow Darts"+checkInventory("Blow Darts")+"</div>");
-      $("#row3").append("<div class='col-md-3 weaponSelect' class='Light'>Throwing Knives"+checkInventory("Throwing Knives")+"</div>");
-      $("#row3").append("<div class='col-md-3 weaponSelect' class='Light'>Throwing Axe"+checkInventory("Throwing Axe")+"</div>");
-      $("#row3").append("<div class='col-md-3 weaponSelect' class='Light'>Crossbow"+checkInventory("Crossbow")+"</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' class='Light'>Javelin"+checkInventory("Javelin")+"</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' class='Light'>Recurve Bow"+checkInventory("Recurve Bow")+"</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' class='Light'>Long Bow"+checkInventory("Long Bow")+"</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' class='Light'>Mystical Bow"+checkInventory("Mystical Bow")+"</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect Light'>Blow Darts"+checkInventory("Blow Darts")+"</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect Light'>Throwing Knives"+checkInventory("Throwing Knives")+"</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect Light'>Throwing Axe"+checkInventory("Throwing Axe")+"</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect Light'>Crossbow"+checkInventory("Crossbow")+"</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect Light'>Javelin"+checkInventory("Javelin")+"</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect Light'>Recurve Bow"+checkInventory("Recurve Bow")+"</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect Light'>Long Bow"+checkInventory("Long Bow")+"</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect Light'>Mystical Bow"+checkInventory("Mystical Bow")+"</div>");
       showWeapons();
       buyEquip();
     }
     function medium()
     {
       removeWeapons();
-      $("#row3").append("<div class='col-md-3 weaponSelect' class='Medium'>Chain Whip"+checkInventory("Chain Whip")+"</div>");
-      $("#row3").append("<div class='col-md-3 weaponSelect' class='Medium'>Ring Sword"+checkInventory("Ring Sword")+"</div>");
-      $("#row3").append("<div class='col-md-3 weaponSelect' class='Medium'>Staff"+checkInventory("Staff")+"</div>");
-      $("#row3").append("<div class='col-md-3 weaponSelect' class='Medium'>Cestus"+checkInventory("Cestus")+"</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' class='Medium'>Spiked Chain"+checkInventory("Spiked Chain")+"</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' class='Medium'>Meteor Hammer"+checkInventory("Meteor Hammer")+"</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' class='Medium'>Mace"+checkInventory("Mace")+"</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' class='Medium'>Flail"+checkInventory("Flail")+"</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect Medium'>Chain Whip"+checkInventory("Chain Whip")+"</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect Medium'>Ring Sword"+checkInventory("Ring Sword")+"</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect Medium'>Staff"+checkInventory("Staff")+"</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect Medium'>Cestus"+checkInventory("Cestus")+"</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect Medium'>Spiked Chain"+checkInventory("Spiked Chain")+"</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect Medium'>Meteor Hammer"+checkInventory("Meteor Hammer")+"</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect Medium'>Mace"+checkInventory("Mace")+"</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect Medium'>Flail"+checkInventory("Flail")+"</div>");
       showWeapons();
       buyEquip();
     }
     function heavy()
     {
       removeWeapons();
-      $("#row3").append("<div class='col-md-3 weaponSelect' class='Heavy'>Shortsword"+checkInventory("Shortsword")+"</div>");
-      $("#row3").append("<div class='col-md-3 weaponSelect' class='Heavy'>War Hammer"+checkInventory("War Hammer")+"</div>");
-      $("#row3").append("<div class='col-md-3 weaponSelect' class='Heavy'>Spear"+checkInventory("Spear")+"</div>");
-      $("#row3").append("<div class='col-md-3 weaponSelect' class='Heavy'>Trident"+checkInventory("Trident")+"</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' class='Heavy'>Scythe"+checkInventory("Scythe")+"</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' class='Heavy'>Battle Axe"+checkInventory("Battle Axe")+"</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' class='Heavy'>Broadsword"+checkInventory("Broadsword")+"</div>");
-      $("#row4").append("<div class='col-md-3 weaponSelect' class='Heavy'>Mystical Sword"+checkInventory("Mystical Sword")+"</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect Heavy'>Shortsword"+checkInventory("Shortsword")+"</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect Heavy'>War Hammer"+checkInventory("War Hammer")+"</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect Heavy'>Spear"+checkInventory("Spear")+"</div>");
+      $("#row3").append("<div class='col-md-3 weaponSelect Heavy'>Trident"+checkInventory("Trident")+"</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect Heavy'>Scythe"+checkInventory("Scythe")+"</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect Heavy'>Battle Axe"+checkInventory("Battle Axe")+"</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect Heavy'>Broadsword"+checkInventory("Broadsword")+"</div>");
+      $("#row4").append("<div class='col-md-3 weaponSelect Heavy'>Mystical Sword"+checkInventory("Mystical Sword")+"</div>");
       showWeapons();
       buyEquip();
     }
     function shield()
     {
       removeWeapons();
-      $("#row3").append("<div class='col-md-4 weaponSelect' class='Shield'>Wood Shield"+checkInventory("Wood Shield")+"</div>");
-      $("#row3").append("<div class='col-md-4 weaponSelect' class='Shield'>Iron Shield"+checkInventory("Iron Shield")+"</div>");
-      $("#row3").append("<div class='col-md-4 weaponSelect' class='Shield'>Steel Shield"+checkInventory("Steel Shield")+"</div>");
-      $("#row4").append("<div class='col-md-4 weaponSelect' class='Shield'>Silver Shield"+checkInventory("Silver Shield")+"</div>");
-      $("#row4").append("<div class='col-md-4 weaponSelect' class='Shield'>Gold Shield"+checkInventory("Gold Shield")+"</div>");
-      $("#row4").append("<div class='col-md-4 weaponSelect' class='Shield'>Mystical Shield"+checkInventory("Mystical Shield")+"</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect Shield'>Wood Shield"+checkInventory("Wood Shield")+"</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect Shield'>Iron Shield"+checkInventory("Iron Shield")+"</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect Shield'>Steel Shield"+checkInventory("Steel Shield")+"</div>");
+      $("#row4").append("<div class='col-md-4 weaponSelect Shield'>Silver Shield"+checkInventory("Silver Shield")+"</div>");
+      $("#row4").append("<div class='col-md-4 weaponSelect Shield'>Gold Shield"+checkInventory("Gold Shield")+"</div>");
+      $("#row4").append("<div class='col-md-4 weaponSelect Shield'>Mystical Shield"+checkInventory("Mystical Shield")+"</div>");
       showWeapons();
       buyEquip();
     }
     function power()
     {
       removeWeapons();
-      $("#row3").append("<div class='col-md-4 weaponSelect' class='Power'>Ice"+checkInventory("Ice")+"</div>");
-      $("#row3").append("<div class='col-md-4 weaponSelect' class='Power'>Fire"+checkInventory("Fire")+"</div>");
-      $("#row3").append("<div class='col-md-4 weaponSelect' class='Power'>Lightning"+checkInventory("Lightning")+"</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect Power'>Ice"+checkInventory("Ice")+"</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect Power'>Fire"+checkInventory("Fire")+"</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect Power'>Lightning"+checkInventory("Lightning")+"</div>");
       showWeapons();
       buyEquip();
     }
     function magic()
     {
       removeWeapons();
-      $("#row3").append("<div class='col-md-4 weaponSelect' class='Magic'>Ice Blast"+checkInventory("Ice Blast")+"</div>");
-      $("#row3").append("<div class='col-md-4 weaponSelect' class='Magic'>Fire Blast"+checkInventory("Fire Blast")+"</div>");
-      $("#row3").append("<div class='col-md-4 weaponSelect' class='Magic'>Lightning Blast"+checkInventory("Lightning Blast")+"</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect Magic'>Ice Blast"+checkInventory("Ice Blast")+"</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect Magic'>Fire Blast"+checkInventory("Fire Blast")+"</div>");
+      $("#row3").append("<div class='col-md-4 weaponSelect Magic'>Lightning Blast"+checkInventory("Lightning Blast")+"</div>");
       showWeapons();
       buyEquip();
     }
@@ -195,18 +195,18 @@ class GameScreen
       {
         // console.log(player);
         // console.log("player level:"+player.getLevel());
+        var weapon = $(this).html().split(" ");
+        console.log(weapon);
+        weapon.splice(weapon.length-2, weapon.length);
+        console.log(weapon);
+        weapon = weapon.join();
+        console.log(weapon);
+        console.log(typeof(weapon));
+        weapon = weapon.replace(/,/g, " ");
+        console.log(weapon);
         var count = 0;
         for (var i = 0; i < player.weapons.length; i++)
         {
-          var weapon = $(this).html().split(" ");
-          console.log(weapon);
-          weapon.splice(weapon.length-2, weapon.length);
-          console.log(weapon);
-          weapon = weapon.join();
-          console.log(weapon);
-          console.log(typeof(weapon));
-          weapon = weapon.replace(/,/g, " ");
-          console.log(weapon);
           // console.log($(this).html() === player.weapons[i].name);
           // if weapon clicked on doesn't match player weapon inventory count ++
           if (weapon !== player.weapons[i].name)
@@ -222,10 +222,11 @@ class GameScreen
             player.setGold("sub", weaponShop.price(weapon));
             player.weapons.push({name:weapon, dmg:(weaponShop.stats(player, weapon))});
             // equip select weapon here, different css class for selected weapon?
-            // player.set+$(this).attr("class")+Wpn($(this).html());
+            
             console.log(player.weapons);
             // update inner html here (10 gold vs 0 gold)
             $(this).html(weapon+" 0 Gold");
+            equipWeapon($(this), weapon);
           }
           else
           {
@@ -237,6 +238,7 @@ class GameScreen
         else
         {
           console.log("already have this weapon");
+          equipWeapon($(this), weapon);
           // update inner html here equiped? or change css here?
           
         }
@@ -261,6 +263,50 @@ class GameScreen
       else
       {
         return (" "+0+" Gold");
+      }
+    }
+    function equipWeapon(weaponBtn, weapon)
+    {
+      console.log(weaponBtn);
+      console.log(weapon);
+      // equip light wpn
+      if (weaponBtn.hasClass("Light"))
+      {
+        console.log("has light");
+        player.setLightWpn(weapon);
+        player.setLightDmg(weaponShop.stats(player, weapon));
+      }
+      else if (weaponBtn.hasClass("Medium"))
+      {
+        console.log("has Medium");
+        player.setMediumWpn(weapon);
+        player.setMediumDmg(weaponShop.stats(player, weapon));
+      }
+      else if (weaponBtn.hasClass("Heavy"))
+      {
+        console.log("has Heavy");
+        player.setHeavyWpn(weapon);
+        player.setHeavyDmg(weaponShop.stats(player, weapon));
+      }
+      else if (weaponBtn.hasClass("Shield"))
+      {
+        console.log("has Shield");
+        player.setShield(weapon);
+        player.setShieldDmg(weaponShop.stats(player, weapon));
+      }
+      else if (weaponBtn.hasClass("Power"))
+      {
+        console.log(weaponShop.stats(player, weapon));
+        console.log("has Power");
+        player.setPower(weapon);
+        player.setPowerDmg(weaponShop.stats(player, weapon));
+        console.log(player.getPowerDmg());
+      }
+      else if (weaponBtn.hasClass("Magic"))
+      {
+        console.log("has Magic");
+        player.setMagic(weapon);
+        player.setMagicDmg(weaponShop.stats(player, weapon));
       }
     }
   }
