@@ -42,9 +42,10 @@ class Fight
       }
       else
       {
+        // player dies
+        removeClick();
         console.log("player died");
-        // implement back to MainGame here
-        actionsArray.push("<div class='extraAction characterAction'>Defeat</div>");
+        actionsArray.push("<div class='endingAction characterAction'>Defeat</div>");
         actionPrintouts();
         resetHealth();
         window.setTimeout(function()
@@ -194,22 +195,21 @@ class Fight
       }
       else
       {
+        // enemy dies
+        removeClick();
         console.log("enemy died");
-        actionsArray.push("<div class='extraAction characterAction'>Victory!</div>");
         goldPrintout(victoryGold());
+        actionsArray.push("<div class='endingAction characterAction'>Victory!</div>");
         actionPrintouts();
         if (player.getLevel() <= enemy.getLevel())
         {
-          player.setLevel(player.getLevel()+1);
-          resetHealth();
           upgradeStats();
+          resetHealth();
         }
         window.setTimeout(function()
         {
           city.returnToCity(player);
         }, 3000);
-        // implement back to MainGame here
-        // return victory, update level
       }
       function enemyAttackLight()
       {
@@ -535,6 +535,13 @@ class Fight
         $("#attackMedium").addClass("click");
       }
     }
+    function removeClick()
+    {
+      $(".buttonsTop").removeClass("click").unbind("click");
+      $(".buttonsTop").addClass("noClick");
+      $(".buttonsBottom").removeClass("click").unbind("click");
+      $(".buttonsBottom").addClass("noClick");
+    }
     function checkForCritical()
     {
       if (critical === 2)
@@ -547,12 +554,15 @@ class Fight
     }
     function upgradeStats()
     {
+      // player level ++
+      player.setLevel(player.getLevel()+1);
       // weapons += upgrade, use weaponshop.stats() for this
-      var weaponShop = new WeaponShop(player);
-      player.setLightDmg(weaponShop.stats(player.getLightWpn()));
-      player.setMediumDmg(weaponShop.stats(player.getMediumWpn()));
-      player.setHeavyDmg(weaponShop.stats(player.getHeavyWpn()));
-      player.setMagicDmg(weaponShop.stats(player.getMagic()));
+      var weaponShop = new WeaponShop();
+      player.setLightDmg(weaponShop.stats(player, player.getLightWpn()));
+      player.setMediumDmg(weaponShop.stats(player, player.getMediumWpn()));
+      player.setHeavyDmg(weaponShop.stats(player, player.getHeavyWpn()));
+      player.setMagicDmg(weaponShop.stats(player, player.getMagic()));
+      player.setDodge(player.getDodge()+5);
     }
   }
 }
