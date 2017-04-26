@@ -242,6 +242,13 @@ class Character
   {
     return this.powerDmg;
   }
+  setPowerDmg(powerDmg)
+  {
+    if(typeof powerDmg === "number")
+    {
+      this.powerDmg = powerDmg;
+    }
+  }
   // magic
   getMagic()
   {
@@ -251,7 +258,7 @@ class Character
   {
     if(typeof magic === "string")
     {
-      this.magic = lighmagict;
+      this.magic = magic;
     }
   }
   getMagicDmg()
@@ -301,7 +308,7 @@ class Character
   }
   getDodged()
   {
-    // var dodged =
+    // if this random num is <= dodge % of character return true
     if ((1+(Math.floor(Math.random()*100))) <= this.getDodge())
       return true;
     else
@@ -385,10 +392,18 @@ class Character
   }
   getLevel()
   {
-    return (this.level);
+    return this.level;
   }
   setLevel(level)
   {
     this.level = level;
+  }
+  getWeapons()
+  {
+    return this.weapons;
+  }
+  addWeapons(weapon)
+  {
+    this.weapons.push(weapon);
   }
 }
