@@ -3,7 +3,9 @@ class City
   start()
   {
     // intro here
-    var player = new Character("Warrior", 250, "Blow Darts", 1, 2, "Chain Whip", 7, 3, "Shortsword", 15, 4, "Wood Shield", 2, 3, "Ice ", 10, "Ice Blast", 10, 10, 10, false, null, 0, 0, 0, 1);
+    var player = new Character("Warrior", 250, "Blow Darts", 1, 2, "Chain Whip", 7, 3, "Shortsword", 15, 4, "Wood Shield", 1, 5, "", 0, null, 0, 0, 10, false, null, 0, 0, 0, 1);
+    player.weapons = [{name:"Blow Darts", dmg:1}, {name:"Chain Whip", dmg:7}, {name:"Shortsword", dmg:15}, {name:"Wood Shield", dmg:1}];
+    // player.setGold("", 10000);
     this.returnToCity(player);
   }
   returnToCity(player)
@@ -11,7 +13,7 @@ class City
     var fight = new Fight();
     var createCharacter = new CreateCharacter();
     var weaponShop = new WeaponShop();
-    var gameScreen = new GameScreen(player);
+    var gameScreen = new GameScreen();
     var instructions = new Instructions();
     gameScreen.makeCity();
     // implement city fuctions here, talk to people, weapon shop, instructions
@@ -86,11 +88,11 @@ class City
     function practiceArena()
     {
       gameScreen.makeGameScreen();
-      fight.fight(player, createCharacter.practice(player.getHealth(), player.getLightDmg(), player.getLightRng(), player.getMediumDmg(), player.getMediumRng(), player.getHeavyDmg(), player.getHeavyRng(), player.getShieldDmg(), player.getShieldRng(), player.getDodge()));
+      fight.fight(player, createCharacter.practice(10, player.getLightDmg(), player.getLightRng(), player.getMediumDmg(), player.getMediumRng(), player.getHeavyDmg(), player.getHeavyRng(), player.getShieldDmg(), player.getShieldRng(), player.getDodge()));
     }
     function goToWeaponShop()
     {
-      gameScreen.makeWeaponShop();
+      gameScreen.makeWeaponShop(player, weaponShop);
       // main menu btn
       $("body").prepend("<button id='mainMenuBtn'>M</button>");
       $("#mainMenuBtn").click(function()
