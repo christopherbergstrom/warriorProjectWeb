@@ -62,7 +62,7 @@ class Fight
       {
         $("#attackLight").click(function()
         {
-          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+player.getLightWpn()+"</div>");
+          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+" "+player.getLightWpn()+"</div>");
           // send damage to enemyDefend
           // normal damage multiplied by special rounds plus powerup
           enemyDefend((player.getPowerDmg()+(player.getLightDmgTotal()*doubleDamage*doubleLight*critical)));
@@ -73,7 +73,7 @@ class Fight
         $("#attackMedium").click(function()
         {
           mediumAttack = false;
-          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+player.getMediumWpn()+"</div>");
+          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+" "+player.getMediumWpn()+"</div>");
           // send damage to enemyDefend
           // normal damage multiplied by special rounds plus powerup
           enemyDefend((player.getPowerDmg()+(player.getMediumDmgTotal()*doubleDamage*doubleMedium*critical)));
@@ -84,7 +84,7 @@ class Fight
         $("#attackHeavy").click(function()
         {
           heavyAttack = false;
-          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+player.getHeavyWpn()+"</div>");
+          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+" "+player.getHeavyWpn()+"</div>");
           // send damage to enemyDefend
           // normal damage multiplied by special rounds plus powerup
           enemyDefend((player.getPowerDmg()+(player.getHeavyDmgTotal()*doubleDamage*doubleHeavy*critical)));
@@ -95,7 +95,7 @@ class Fight
         $("#attackMagic").click(function()
         {
           magicAttack = false;
-          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+player.getMagic()+"</div>");
+          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" attacks with "+player.getPower()+" "+player.getMagic()+"</div>");
           // send damage to enemyDefend
           // normal damage multiplied by special rounds plus powerup
           enemyDefend((player.getPowerDmg()+(player.getMagicDmgTotal()*doubleDamage*critical)));
@@ -357,8 +357,8 @@ class Fight
       $("#playerStats").append("<div>"+player.getMediumWpn()+" "+player.getMediumDmg()+"-"+(player.getMediumDmg()+(player.getMediumRng()-1))+"</div>");
       $("#playerStats").append("<div>"+player.getHeavyWpn()+" "+player.getHeavyDmg()+"-"+(player.getHeavyDmg()+(player.getHeavyRng()-1))+"</div>");
       $("#playerStats").append("<div>"+player.getShield()+" "+player.getShieldDmg()+"-"+(player.getShieldDmg()+(player.getShieldRng()-1))+"</div>");
-      if (player.getPower() !== null)
-        $("#playerStats").append("<div>Power Up: "+player.getPower()+" +"+player.getPowerDmg()+"</div>");
+      if (player.getPower() !== "")
+        $("#playerStats").append("<div>"+player.getPower()+" +"+player.getPowerDmg()+"</div>");
       if (player.getMagic() !== null)
         $("#playerStats").append("<div>"+player.getMagic()+" "+player.getMagicDmg()+"-"+(player.getMagicDmg()+(player.getMagicRng()-1))+"</div>");
       $("#playerStats").append("<div>Dodge "+player.getDodge()+"%</div>");
