@@ -119,6 +119,7 @@ class GameScreen
       $("#row4").append("<div class='col-md-3 weaponSelect Light'>Mystical Bow"+checkInventory("Mystical Bow")+"</div>");
       showWeapons();
       buyEquip();
+      changeClasses(false);
     }
     function medium()
     {
@@ -133,6 +134,7 @@ class GameScreen
       $("#row4").append("<div class='col-md-3 weaponSelect Medium'>Flail"+checkInventory("Flail")+"</div>");
       showWeapons();
       buyEquip();
+      changeClasses(false);
     }
     function heavy()
     {
@@ -147,6 +149,7 @@ class GameScreen
       $("#row4").append("<div class='col-md-3 weaponSelect Heavy'>Mystical Sword"+checkInventory("Mystical Sword")+"</div>");
       showWeapons();
       buyEquip();
+      changeClasses(false);
     }
     function shield()
     {
@@ -159,6 +162,7 @@ class GameScreen
       $("#row4").append("<div class='col-md-4 weaponSelect Shield'>Mystical Shield"+checkInventory("Mystical Shield")+"</div>");
       showWeapons();
       buyEquip();
+      changeClasses(false);
     }
     function power()
     {
@@ -168,6 +172,7 @@ class GameScreen
       $("#row3").append("<div class='col-md-4 weaponSelect Power'>Lightning"+checkInventory("Lightning")+"</div>");
       showWeapons();
       buyEquip();
+      changeClasses(false);
     }
     function magic()
     {
@@ -177,6 +182,7 @@ class GameScreen
       $("#row3").append("<div class='col-md-4 weaponSelect Magic'>Lightning Blast"+checkInventory("Lightning Blast")+"</div>");
       showWeapons();
       buyEquip();
+      changeClasses(false);
     }
     function removeWeapons()
     {
@@ -227,6 +233,7 @@ class GameScreen
             // update inner html here (10 gold vs 0 gold)
             $(this).html(weapon+" 0 Gold");
             equipWeapon($(this), weapon);
+            changeClasses($(this));
           }
           else
           {
@@ -239,10 +246,9 @@ class GameScreen
         {
           console.log("already have this weapon");
           equipWeapon($(this), weapon);
+          changeClasses($(this));
           // update inner html here equiped? or change css here?
-          
         }
-        
       });
     }
     function checkInventory(weapon)
@@ -307,6 +313,25 @@ class GameScreen
         console.log("has Magic");
         player.setMagic(weapon);
         player.setMagicDmg(weaponShop.stats(player, weapon));
+      }
+    }
+    function changeClasses(div)
+    {
+      if (div)
+      {
+        $(".weaponSelect").removeClass("weaponEquipped");
+        div.addClass("weaponEquipped");
+      }
+      else
+      {
+        // weapon is equiped add weaponEquipped class
+        $(".weaponSelect").each(function()
+        {
+          if ($(this).html().includes(player.getLightWpn()) || $(this).html().includes(player.getMediumWpn()) || $(this).html().includes(player.getHeavyWpn()) || $(this).html().includes(player.getShield()) || $(this).html().includes(player.getPower()) || $(this).html().includes(player.getMagic()))
+          {
+            $(this).addClass("weaponEquipped");
+          }
+        });
       }
     }
   }
