@@ -83,6 +83,18 @@ body
 {
   cursor: pointer;
 }
+#playerGoldWeaponShop
+{
+  position: fixed;
+  top: 0;
+  right: 0;
+  color: yellow;
+  background-color: #000000;
+  font-size: 1.5em;
+  z-index: 100;
+  padding-left: 1%;
+  padding-right: 1%;
+}
 .weaponCategory
 {
   color: #ffffff;
