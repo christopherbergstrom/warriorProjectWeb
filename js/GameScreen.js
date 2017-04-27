@@ -226,10 +226,10 @@ class GameScreen
           {
             console.log("purchasing");
             player.setGold("sub", weaponShop.price(weapon));
+            $("#playerGoldWeaponShop").html("Gold "+player.getGold());
             player.weapons.push({name:weapon, dmg:(weaponShop.stats(player, weapon))});
-            // equip select weapon here, different css class for selected weapon?
-            
             console.log(player.weapons);
+            // this adds the <br> and dmg ranges
             var endHTML = $(this).html().split(" ");
             endHTML = endHTML[endHTML.length-2];
             console.log(endHTML);
@@ -240,6 +240,12 @@ class GameScreen
           }
           else
           {
+            // implement notification here
+            $("#playerGoldWeaponShop").css("color", "red");
+            window.setTimeout(function()
+            {
+              $("#playerGoldWeaponShop").css({"color": "yellow", "transition": ".15s"});
+            }, 750);
             console.log("not enough gold");
             console.log("player gold: "+player.getGold());
             console.log("cost: "+weaponShop.price(weapon));
@@ -247,10 +253,10 @@ class GameScreen
         }
         else
         {
+          // weapon is already purchased, equips weapon clicked on
           console.log("already have this weapon");
           equipWeapon($(this), weapon);
           changeClasses($(this));
-          // update inner html here equiped? or change css here?
         }
       });
     }
