@@ -83,6 +83,37 @@ body
 {
   cursor: pointer;
 }
+.weaponCategory
+{
+  color: #ffffff;
+  background-color: #660000;
+  font-size: 3em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 25vh;
+}
+.weaponCategory:hover
+{
+  background-color: red;
+}
+.weaponSelect
+{
+  color: #ffffff;
+  background-color: #333333;
+  font-size: 2em;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 25vh;
+}
+.weaponSelect:hover
+{
+  background-color: #808080;
+  cursor: pointer;
+}
+.weaponEquipped
+{
+  color: red;
+}
 #playerStats
 {
   position: absolute;
@@ -119,7 +150,7 @@ body
 {
   position: absolute;
   width: 60vw;
-  height: 40vh;
+  height: 30vh;
   left: 20vw;
   top: 0;
 }
@@ -128,7 +159,7 @@ body
 {
   position: absolute;
   width: 60vw;
-  height: 60vh;
+  height: 70vh;
   left: 20vw;
   bottom: 0;
   background-color: black;
@@ -152,6 +183,10 @@ body
 .extraAction
 {
   color: yellow;
+}
+.endingAction
+{
+  color: orange;
 }
 /*fight btns top*/
 .buttonsTop
@@ -221,4 +256,8 @@ body
   background-color: #999999;
   transition: .25s;
   cursor: not-allowed;
+}
+button:focus
+{
+  outline: 0;
 }
