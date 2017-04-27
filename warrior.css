@@ -90,7 +90,7 @@ body
   font-size: 3em;
   text-align: center;
   vertical-align: middle;
-  line-height: 25vh;
+  line-height: 20vh;
 }
 .weaponCategory:hover
 {
@@ -102,8 +102,8 @@ body
   background-color: #333333;
   font-size: 2em;
   text-align: center;
-  vertical-align: middle;
-  line-height: 25vh;
+  /*vertical-align: middle;*/
+  line-height: 15vh;
 }
 .weaponSelect:hover
 {
