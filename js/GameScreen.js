@@ -27,6 +27,163 @@ class GameScreen
     $(".container-fluid").append("<div class='row'>"+battle+practiceArena+weaponShop+"</div>");
     $(".container-fluid").append("<div class='row'>"+talkToLocals+playerStatsBtn+instructions+"</div>");
   }
+  makeIntro()
+  {
+    // clears out old container
+    $("body").append("<div class='container-fluid'></div>");
+    $(".container-fluid").append("<div class='infoText'></div>");
+    $.ajax(
+    {
+      url: "../text/intro.txt",
+      success: function(result)
+      {
+        $(".infoText").html(result);
+        $(".infoText").append("<div id='continue'>continue</div>");
+        $("#continue").click(function()
+        {
+          return true;
+        });
+      },
+      error: function()
+      {
+        $(".infoText").html("Failed to load intro");
+        return true;
+      }
+    });
+    return true;
+  }
+  makeEnding()
+  {
+    // clears out old container
+    $("body").append("<div class='container-fluid'></div>");
+    $(".container-fluid").append("<div class='infoText'></div>");
+    $.ajax(
+    {
+      url: "../text/ending.txt",
+      success: function(result)
+      {
+        $(".infoText").html(result);
+      },
+      error: function()
+      {
+        $(".infoText").html("Failed to load ending");
+      }
+    });
+  }
+  makeTalkToLocals()
+  {
+    // clears out old container
+    $(".container-fluid").empty();
+    // row1
+    $(".container-fluid").append("<div class='row' id='row1'></div>");
+    $(".container-fluid").append("<div class='row' id='row2'></div>");
+    // city ruler
+    $("#row1").append("<div class='col-md-3 topAndBottom weaponCategory' id='cityRuler'>City Ruler</div>");
+    // child
+    $("#row1").append("<div class='col-md-3 topAndBottom weaponCategory' id='child'>Child</div>");
+    // injured soldier
+    $("#row1").append("<div class='col-md-3 topAndBottom weaponCategory' id='injuredSoldier'>Injured Soldier</div>");
+    // wife of killed soldier
+    $("#row1").append("<div class='col-md-3 topAndBottom weaponCategory' id='Widow'>Widow</div>");
+    var count = 3;
+    $("#row2").append("<div class='col-md-10 col-offset-1 infoText'></div>");
+    // click on different locals
+    $("#cityRuler").click(function()
+    {
+      removeText();
+      if (count % 3 === 0)
+        $(".infoText").html("I have unwillingly taken up the position of the ruler of this city due to the last king dying of old age. I never thought of him as a good king, especially with him being the first king from a foreign city.");
+      else if (count % 3 === 1)
+        $(".infoText").html("It is my burden now to look after the people of the city of Berg, although I’m afraid I can’t do much for them.");
+      else
+        $(".infoText").html("I put on a kind face for everyone, but I feel that I am dealing with the situation worse than any of them.");
+      showText();
+      count++;
+    });
+    $("#child").click(function()
+    {
+      removeText();
+      if (count % 3 === 0)
+        $(".infoText").html("I haven’t seen the monsters, but they sound scary.");
+      else if (count % 3 === 1)
+        $(".infoText").html("Please help us.");
+      else
+        $(".infoText").html("Sometimes I can’t sleep at night because I have nightmares about the monsters.");
+      showText();
+      count++;
+    });
+    $("#injuredSoldier").click(function()
+    {
+      removeText();
+      if (count % 3 === 0)
+        $(".infoText").html("It’s nice to meet you, I haven’t seen another soldier in a long time now.");
+      else if (count % 3 === 1)
+        $(".infoText").html("I was the last to try to fight off those nightmarish creatures, and the only one to survive...");
+      else
+        $(".infoText").html("I wish I could help you, but with the loss of my leg I’m no longer able to fight.");
+        showText();
+        count++;
+    });
+    $("#Widow").click(function()
+    {
+      removeText();
+      if (count % 3 === 0)
+        $(".infoText").html("Hello...");
+      else if (count % 3 === 1)
+        $(".infoText").html("I hope you can save what is left of our once great city.");
+      else
+        $(".infoText").html("You remind me of my husband, I hope his fate doesn’t become your own.");
+      showText();
+      count++;
+    });
+    function removeText()
+    {
+      $(".infoText").empty();
+    }
+    function showText()
+    {
+      $(".infoText").hide().fadeIn("medium");
+    }
+  }
+  makeViewPlayerStats(player)
+  {
+    // clears out old container
+    $(".container-fluid").empty();
+    $(".container-fluid").append("<div id='playerStatsNotFight'></div>");
+    // character: name, health, level, light, medium, heavy, shield, powerup, magic, dodge, gold
+    // player stats
+    $("#playerStatsNotFight").append("<div>"+player.getName()+"</div>");
+    $("#playerStatsNotFight").append("<div>Level "+player.getLevel()+"</div>");
+    $("#playerStatsNotFight").append("<div>HP "+player.getHealth()+"</div>");
+    $("#playerStatsNotFight").append("<div>"+player.getLightWpn()+" "+player.getLightDmg()+"-"+(player.getLightDmg()+(player.getLightRng()-1))+"</div>");
+    $("#playerStatsNotFight").append("<div>"+player.getMediumWpn()+" "+player.getMediumDmg()+"-"+(player.getMediumDmg()+(player.getMediumRng()-1))+"</div>");
+    $("#playerStatsNotFight").append("<div>"+player.getHeavyWpn()+" "+player.getHeavyDmg()+"-"+(player.getHeavyDmg()+(player.getHeavyRng()-1))+"</div>");
+    $("#playerStatsNotFight").append("<div>"+player.getShield()+" "+player.getShieldDmg()+"-"+(player.getShieldDmg()+(player.getShieldRng()-1))+"</div>");
+    if (player.getPower() !== null)
+      $("#playerStatsNotFight").append("<div>"+player.getPower()+" +"+player.getPowerDmg()+"</div>");
+    if (player.getMagic() !== null)
+      $("#playerStatsNotFight").append("<div>"+player.getMagic()+" "+player.getMagicDmg()+"-"+(player.getMagicDmg()+(player.getMagicRng()-1))+"</div>");
+    $("#playerStatsNotFight").append("<div>Dodge "+player.getDodge()+"%</div>");
+    $("#playerStatsNotFight").append("<div>Gold "+player.getGold()+"</div>");
+  }
+  makeViewInstructions()
+  {
+    // clears out old container
+    $(".container-fluid").empty();
+    $(".container-fluid").append("<div class='infoText'></div>");
+    $.ajax(
+    {
+      url: "../text/instructions.txt",
+      success: function(result)
+      {
+        $(".infoText").html(result);
+      },
+      error: function()
+      {
+        $(".infoText").html("Failed to load instructions");
+      }
+    });
+  }
   makeFightSelection(level)
   {
     // clears out old container
