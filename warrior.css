@@ -21,13 +21,39 @@ body
   background-color: red;
 }
 /*instructions btn*/
-#bottomInstructions
+#warriorNameText
 {
-  background-color: #000066;
+  text-align: center;
+  font-size: 2.5em;
+  color: #ffffff;
+  line-height: 20vh;
 }
-#bottomInstructions:hover
+#warriorNameInput
 {
-  background-color: blue;
+  /*font-size: 2em;*/
+  color: #000000;
+  text-align: center;
+}
+.infoText
+{
+  position: relative;
+  color: #ffffff;
+  width: 80%;
+  left: 10%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  font-size: 2em;
+  overflow-y: auto;
+}
+#continue
+{
+  font-size: 2em;
+  color: #6666ff;
+}
+#continue:hover
+{
+  cursor: pointer;
+  color: #ccccff;
 }
 /*top btns in city*/
 .topButtons
@@ -126,11 +152,27 @@ body
 {
   color: red;
 }
+#playerStatsNotFight
+{
+  position: absolute;
+  width: 100%;
+  height: 90%;
+  left: 0;
+  top: 10%;
+  background-color: #000000;
+  font-size: 3em;
+  color: #ffffff;
+  text-align: center;
+}
+#playerStatsNotFight div:first-child
+{
+  font-weight: bold;
+}
 #playerStats
 {
   position: absolute;
-  width: 20vw;
-  height: 100vh;
+  width: 20%;
+  height: 100%;
   left: 0;
   top: 0;
   border-right: 1px solid #ffffff;
@@ -138,8 +180,8 @@ body
 #enemyStats
 {
   position: absolute;
-  width: 20vw;
-  height: 100vh;
+  width: 20%;
+  height: 100%;
   right: 0;
   top: 0;
   border-left: 1px solid #ffffff;
@@ -161,18 +203,18 @@ body
 #screen
 {
   position: absolute;
-  width: 60vw;
-  height: 30vh;
-  left: 20vw;
+  width: 60%;
+  height: 30%;
+  left: 20%;
   top: 0;
 }
 /*where action printouts are*/
 #actions
 {
   position: absolute;
-  width: 60vw;
-  height: 70vh;
-  left: 20vw;
+  width: 60%;
+  height: 70%;
+  left: 20%;
   bottom: 0;
   background-color: black;
   overflow-y: auto;
@@ -182,7 +224,8 @@ body
   font-size: 2em;
   background-color: black;
   color: black;
-  width: 100%;
+  width: 99%;
+  padding-left: 1%;
 }
 .playerAction
 {
