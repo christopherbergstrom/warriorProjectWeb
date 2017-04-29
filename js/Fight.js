@@ -220,7 +220,10 @@ class Fight
         }
         window.setTimeout(function()
         {
-          city.returnToCity(player);
+          if (player.getLevel() === 11 && enemy.isCharacterDragon() === true)
+            city.returnToCity(player, true);
+          else
+            city.returnToCity(player, false);
         }, 3000);
       }
       function enemyAttackLight()
@@ -361,7 +364,7 @@ class Fight
     }
     function addStats()
     {
-      // character: name, health, light, medium, heavy, shield, powerup, magic, dodge
+      // character: name, health, light, medium, heavy, shield, powerup, magic, dodge, gold
       // player stats
       $("#playerStats").append("<div>"+player.getName()+"</div>");
       $("#playerStats").append("<div>HP "+player.getHealth()+"</div>");
@@ -374,7 +377,7 @@ class Fight
       if (player.getMagic() !== null)
         $("#playerStats").append("<div>"+player.getMagic()+" "+player.getMagicDmg()+"-"+(player.getMagicDmg()+(player.getMagicRng()-1))+"</div>");
       $("#playerStats").append("<div>Dodge "+player.getDodge()+"%</div>");
-      $("#playerStats").append("<div id='playerGold'>Gold "+player.getGold()+"</div>");
+      $("#playerStats").append("<div id='playerGoldFight'>Gold "+player.getGold()+"</div>");
       // enemy stats
       $("#enemyStats").append("<div>"+enemy.getName()+"</div>");
       $("#enemyStats").append("<div>HP "+enemy.getHealth()+"</div>");
@@ -494,7 +497,7 @@ class Fight
       player.setGold("add", (goldAmount*doubleGold));
       console.log("goldAmount: "+(goldAmount*doubleGold));
       console.log("player gold after: "+player.getGold());
-      $("#playerGold").html("Gold "+player.getGold());
+      $("#playerGoldFight").html("Gold "+player.getGold());
     }
     function actionPrintouts()
     {
