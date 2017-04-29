@@ -1,39 +1,46 @@
 class City
 {
-  start()
+  start(warriorName)
   {
     // intro here
-    var player = new Character("Warrior", 250, "Blow Darts", 1, 2, "Chain Whip", 7, 3, "Shortsword", 15, 4, "Wood Shield", 1, 5, "", 0, null, 0, 0, 10, false, null, 0, 0, 0, 1);
-    player.weapons = [{name:"Blow Darts", dmg:1}, {name:"Chain Whip", dmg:7}, {name:"Shortsword", dmg:15}, {name:"Wood Shield", dmg:1}];
-    // player.setGold("", 10000);
-    this.returnToCity(player);
+    var gameScreen = new GameScreen();
+    var worked = gameScreen.makeIntro();
+    if (worked)
+    {
+      if (warriorName === "")
+        warriorName = "Warrior";
+      var player = new Character(warriorName, 250, "Blow Darts", 1, 2, "Chain Whip", 7, 3, "Shortsword", 15, 4, "Wood Shield", 1, 5, null, 0, null, 0, 0, 10, false, null, 0, 0, 0, 1);
+      player.weapons = [{name:"Blow Darts", dmg:1}, {name:"Chain Whip", dmg:7}, {name:"Shortsword", dmg:15}, {name:"Wood Shield", dmg:1}];
+      // player.setGold("", 10000);
+      this.returnToCity(player);
+    }
   }
-  returnToCity(player)
+  returnToCity(player, ending)
   {
     var fight = new Fight();
     var createCharacter = new CreateCharacter();
     var weaponShop = new WeaponShop();
     var gameScreen = new GameScreen();
-    var instructions = new Instructions();
     gameScreen.makeCity();
-    // implement city fuctions here, talk to people, weapon shop, instructions
+    if (ending)
+    {
+      gameScreen.makeEnding();
+      makeMainMenuBtn();
+    }
+    // order of btns
     // battle, practice arena, weapon shop
     // talk to locals, instructions
     $("#battle").click(battle);
     $("#practiceArena").click(practiceArena);
     $("#weaponShop").click(goToWeaponShop);
     $("#talkToLocals").click(talkToLocals);
+    $("#playerStatsBtn").click(viewPlayerStats);
     $("#instructions").click(viewInstructions);
     function battle()
     {
       gameScreen.makeFightSelection(player.getLevel());
       // main menu btn
-      $("body").prepend("<button id='mainMenuBtn'>M</button>");
-      $("#mainMenuBtn").click(function()
-      {
-        var city = new City();
-        city.returnToCity(player);
-      });
+      makeMainMenuBtn();
       $("#one").click(function()
       {
         gameScreen.makeGameScreen();
@@ -88,26 +95,39 @@ class City
     function practiceArena()
     {
       gameScreen.makeGameScreen();
-      fight.fight(player, createCharacter.practice(10, player.getLightDmg(), player.getLightRng(), player.getMediumDmg(), player.getMediumRng(), player.getHeavyDmg(), player.getHeavyRng(), player.getShieldDmg(), player.getShieldRng(), player.getDodge()));
+      fight.fight(player, createCharacter.practice(player.getHealth(), player.getLightDmg(), player.getLightRng(), player.getMediumDmg(), player.getMediumRng(), player.getHeavyDmg(), player.getHeavyRng(), player.getShieldDmg(), player.getShieldRng(), player.getDodge()));
     }
     function goToWeaponShop()
     {
       gameScreen.makeWeaponShop(player, weaponShop);
       // main menu btn
+      makeMainMenuBtn();
+      // player gold
+      $("body").prepend("<div id='playerGoldWeaponShop'>Gold "+player.getGold()+"</div>");
+    }
+    function talkToLocals()
+    {
+      gameScreen.makeTalkToLocals();
+      makeMainMenuBtn();
+    }
+    function viewPlayerStats()
+    {
+      gameScreen.makeViewPlayerStats(player);
+      makeMainMenuBtn();
+    }
+    function viewInstructions()
+    {
+      gameScreen.makeViewInstructions();
+      makeMainMenuBtn();
+    }
+    function makeMainMenuBtn()
+    {
       $("body").prepend("<button id='mainMenuBtn'>M</button>");
       $("#mainMenuBtn").click(function()
       {
         var city = new City();
         city.returnToCity(player);
       });
-    }
-    function talkToLocals()
-    {
-      
-    }
-    function viewInstructions()
-    {
-      
     }
   }
 }
