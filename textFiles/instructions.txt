@@ -26,6 +26,5 @@ DOUBLE DAMAGE HEAVY WEAPON ROUND: The current Heavy weapon will inflict double t
 ULTIMATE BLOCK ROUND: If you choose to block the enemy's attack, you will block 100% of the attack, regardless of what shield you have.<br>
 DOUBLE GOLD DROPPED ROUND: If the enemy drops gold, it will drop double the normal amount.<br>
 CRITICAL HIT: Randomly happens at any point mid game. It too, inflicts double the normal damage for any attack.<br>
-These boosts will all build on each other, meaning if you have the DOUBLE DAMAGE INFLICTING ROUND and the DOUBLE DAMAGE HEAVY WEAPON ROUND<br>
-and you choose to attack with your Heavy weapon, it will inflict four times the normal damage<br>
+These boosts will all build on each other, meaning if you have the DOUBLE DAMAGE INFLICTING ROUND and the DOUBLE DAMAGE HEAVY WEAPON ROUND and you choose to attack with your Heavy weapon, it will inflict four times the normal damage<br>
 If you get a CRITICAL HIT with both of those boosts active, it will inflict eight times the normal damage.<br>
