@@ -5,15 +5,11 @@ $(document).ready(function()
   {
     // start game
     var city = new City();
-    city.start($("#warriorNameInput").val());
+    var name = $("#warriorNameInput").val();
     // remove start screen
     $("#startScreen").remove();
+    // intro here
+    var gameScreen = new GameScreen();
+    gameScreen.makeIntro(city, name);
   });
-  // view instructions
-  // $("#bottomInstructions").click(function()
-  // {
-  //   // inplement instructions here
-  //   var instructions = new Instructions();
-  //   instructions.instructions();
-  // });
 });
