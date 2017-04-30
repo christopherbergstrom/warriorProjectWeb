@@ -1,5 +1,5 @@
 * * * * * * *<br> Instructions<br>* * * * * * *<br><br>
-At each screen, you are presented several button.<br>
+At each screen, you are presented several buttons.<br>
 Clicking a button will result in the action associated with that button being executed.<br>
 The button on the top left of the screen with the "M" is the main menu button, click this at any time and it will take you back to the main menu.<br>
 The Battle button will let you choose what enemy you want to fight. You can only fight enemies that are the same level as you.<br>
@@ -10,7 +10,7 @@ The Player Stats button lets you view your current level, stats, loadout and gol
 The Instructions button lets you read the instructions.<br><br>
 
 You level up by defeating enemies. Each time you level up, your weapons' stats will automatically increase and you unlock the next enemy to fight.<br>
-When it is your turn to attack in each round, you are able to attack using any purchased weapon that is currently selected.<br>
+When it is your turn to attack in each round, you are able to attack using any purchased weapon that is currently equipped.<br>
 Light, Medium, and Heavy weapons will always be available unless the weapon is cooling down.<br>
 Each enemy has a Light, Medium, and Heavy attack, as well as the option to block or dodge your attack, although the last two will vary between enemies.<br>
 When the enemy attacks, you only have the options to block or try to dodge the attack.<br>
