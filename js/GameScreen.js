@@ -27,39 +27,45 @@ class GameScreen
     $(".container-fluid").append("<div class='row'>"+battle+practiceArena+weaponShop+"</div>");
     $(".container-fluid").append("<div class='row'>"+talkToLocals+playerStatsBtn+instructions+"</div>");
   }
-  makeIntro()
+  makeIntro(city, name)
   {
     // clears out old container
     $("body").append("<div class='container-fluid'></div>");
     $(".container-fluid").append("<div class='infoText'></div>");
     $.ajax(
     {
-      url: "../text/intro.txt",
+      url: "textFiles/intro.txt",
       success: function(result)
       {
+        console.log("success");
         $(".infoText").html(result);
         $(".infoText").append("<div id='continue'>continue</div>");
         $("#continue").click(function()
         {
-          return true;
+          city.start(name);
         });
       },
       error: function()
       {
+        console.log("error")
         $(".infoText").html("Failed to load intro");
-        return true;
+        $(".infoText").append("<div id='continue'>continue</div>");
+        $("#continue").click(function()
+        {
+          city.start(name);
+        });
       }
     });
-    return true;
   }
   makeEnding()
   {
     // clears out old container
+    $("body").empty();
     $("body").append("<div class='container-fluid'></div>");
     $(".container-fluid").append("<div class='infoText'></div>");
     $.ajax(
     {
-      url: "../text/ending.txt",
+      url: "textFiles/ending.txt",
       success: function(result)
       {
         $(".infoText").html(result);
@@ -173,7 +179,7 @@ class GameScreen
     $(".container-fluid").append("<div class='infoText'></div>");
     $.ajax(
     {
-      url: "../text/instructions.txt",
+      url: "textFiles/instructions.txt",
       success: function(result)
       {
         $(".infoText").html(result);
