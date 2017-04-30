@@ -1,4 +1,4 @@
-<br><br>* * * * * * *<br> Instructions<br>* * * * * * *<br><br>
+* * * * * * *<br> Instructions<br>* * * * * * *<br><br>
 At each screen, you are presented several button.<br>
 Clicking a button will result in the action associated with that button being executed.<br>
 The button on the top left of the screen with the "M" is the main menu button, click this at any time and it will take you back to the main menu.<br>
@@ -19,13 +19,13 @@ Each weapon category has several different selections of weapons.<br>
 You can buy new weapons with gold. You accumulate gold by defeating enemies and when enemies randomly drop gold.<br><br>
 
 At the beginning of each round, there are several special boosts that will randomly be activated. These boosts are only active for one round.<br>
-\tDOUBLE DAMAGE INFLICTING ROUND: Every attack you choose will inflict double the normal damage.<br>
-\tDOUBLE DAMAGE LIGHT WEAPON ROUND: The current Light weapon will inflict double the normal damage.<br>
-\tDOUBLE DAMAGE MEDIUM WEAPON ROUND: The current Medium weapon will inflict double the normal damage.<br>
-\tDOUBLE DAMAGE HEAVY WEAPON ROUND: The current Heavy weapon will inflict double the normal damage.<br>
-\tULTIMATE BLOCK ROUND: If you choose to block the enemy's attack, you will block 100% of the attack, regardless of what shield you have.<br>
-\tDOUBLE GOLD DROPPED ROUND: If the enemy drops gold, it will drop double the normal amount.<br>
-\tCRITICAL HIT: Randomly happens at any point mid game. It too, inflicts double the normal damage for any attack.<br>
+DOUBLE DAMAGE INFLICTING ROUND: Every attack you choose will inflict double the normal damage.<br>
+DOUBLE DAMAGE LIGHT WEAPON ROUND: The current Light weapon will inflict double the normal damage.<br>
+DOUBLE DAMAGE MEDIUM WEAPON ROUND: The current Medium weapon will inflict double the normal damage.<br>
+DOUBLE DAMAGE HEAVY WEAPON ROUND: The current Heavy weapon will inflict double the normal damage.<br>
+ULTIMATE BLOCK ROUND: If you choose to block the enemy's attack, you will block 100% of the attack, regardless of what shield you have.<br>
+DOUBLE GOLD DROPPED ROUND: If the enemy drops gold, it will drop double the normal amount.<br>
+CRITICAL HIT: Randomly happens at any point mid game. It too, inflicts double the normal damage for any attack.<br>
 These boosts will all build on each other, meaning if you have the DOUBLE DAMAGE INFLICTING ROUND and the DOUBLE DAMAGE HEAVY WEAPON ROUND<br>
-\tand you choose to attack with your Heavy weapon, it will inflict four times the normal damage><br>
-\tIf you get a CRITICAL HIT with both of those boosts active, it will inflict eight times the normal damage.<br>
+and you choose to attack with your Heavy weapon, it will inflict four times the normal damage<br>
+If you get a CRITICAL HIT with both of those boosts active, it will inflict eight times the normal damage.<br>
