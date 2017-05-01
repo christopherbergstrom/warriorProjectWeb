@@ -3,7 +3,7 @@ class CreateCharacter
   // name, health, lightWpn, lightDmg, lightWpnDmgRng, mediumWpn, mediumDmg, mediumWpnDmgRng, heavyWpn, heavyDmg, heavyWpnDmgRng, shield, shieldDmg, shieldDmgRng, power, powerDmg, magic, magicDmg, magicDmgRng, dodge, isDragon, fireBreath, fireBreathDmg, fireBreathDmgRng, gold, level
   player()
   {
-    return(new Character("Warrior", 250, "Blow Darts", 1, 2,"Chain Whip", 7, 3, "Shortsword", 15, 4, "Wood Shield", 2, 3, "Ice ", 10, "Ice Blast", 10, 10, 10, false, null, 0, 0, 0, 1));
+    return(new Character("Warrior", 250, "Blow Darts", 1, 2, "Chain Whip", 7, 3, "Shortsword", 15, 4, "Wood Shield", 2, 3, "Ice ", 10, "Ice Blast", 10, 10, 10, false, null, 0, 0, 0, 1));
   }
   one()
   {
@@ -44,5 +44,9 @@ class CreateCharacter
   ten()
   {
     return(new Character("Dragon", 5000, "Claws", 91, 3, "Tail", 94, 4, "Bite", 98, 3, null, 0, 0, null, 0, null, 0, 0, 0, true, "Fire Breath", 101, 10, 0, 10));
+  }
+  practice(health, lightDmg, lightRng, mediumDmg, mediumRng, heavyDmg, heavyRng, shieldDmg, shieldRng, dodge)
+  {
+    return(new Character("Practice Enemy", health, "Light Weapon", lightDmg, lightRng, "Medium Weapon", mediumDmg, mediumRng, "Heavy Weapon", heavyDmg, heavyRng, "Shield", shieldDmg, shieldRng, null, 0, null, 0, 0, dodge, false, null, 0, 0, 0, 1));
   }
 }
