@@ -131,7 +131,10 @@ class Fight
         // player blocks all damage
         if (damageBlocked >= receivingDmg)
         {
-          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" blocks "+receivingDmg+" damage with "+player.getShield()+"</div>");
+          if (player.getPower() === null)
+            actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" blocks "+receivingDmg+" damage with "+player.getShield()+"</div>");
+          else
+            actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" blocks "+receivingDmg+" damage with "+player.getPower()+" "+player.getShield()+"</div>");
           actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts 0 damage to "+player.getName()+"</div>");
           showHealthLevels();
           // print actions
@@ -143,7 +146,10 @@ class Fight
         // player receives partial damage
         else
         {
-          actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" blocks "+damageBlocked+" damage with "+player.getShield()+"</div>");
+          if (player.getPower() === null)
+            actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" blocks "+receivingDmg+" damage with "+player.getShield()+"</div>");
+          else
+            actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" blocks "+receivingDmg+" damage with "+player.getPower()+" "+player.getShield()+"</div>");
           actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts "+(receivingDmg-damageBlocked)+" damage to "+player.getName()+"</div>");
           player.setHealth("sub", (receivingDmg-damageBlocked));
           showHealthLevels();
@@ -213,11 +219,11 @@ class Fight
         goldPrintout(victoryGold());
         actionsArray.push("<div class='endingAction characterAction'>Victory!</div>");
         actionPrintouts();
-        resetHealth();
         if (player.getLevel() <= enemy.getLevel())
         {
           upgradeStats();
         }
+        resetHealth();
         window.setTimeout(function()
         {
           if (player.getLevel() === 11 && enemy.isCharacterDragon() === true)
