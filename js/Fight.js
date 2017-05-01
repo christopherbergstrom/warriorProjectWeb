@@ -147,9 +147,9 @@ class Fight
         else
         {
           if (player.getPower() === null)
-            actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" blocks "+receivingDmg+" damage with "+player.getShield()+"</div>");
+            actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" blocks "+damageBlocked+" damage with "+player.getShield()+"</div>");
           else
-            actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" blocks "+receivingDmg+" damage with "+player.getPower()+" "+player.getShield()+"</div>");
+            actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" blocks "+damageBlocked+" damage with "+player.getPower()+" "+player.getShield()+"</div>");
           actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" inflicts "+(receivingDmg-damageBlocked)+" damage to "+player.getName()+"</div>");
           player.setHealth("sub", (receivingDmg-damageBlocked));
           showHealthLevels();
