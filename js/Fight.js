@@ -127,7 +127,7 @@ class Fight
       toggleClasses();
       $("#block").click(function()
       {
-        var damageBlocked = (player.getShieldDmgTotal()*ultimateBlock);
+        var damageBlocked = (player.getPowerDmg()+(player.getShieldDmgTotal()*ultimateBlock));
         // player blocks all damage
         if (damageBlocked >= receivingDmg)
         {
