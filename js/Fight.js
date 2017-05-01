@@ -213,10 +213,10 @@ class Fight
         goldPrintout(victoryGold());
         actionsArray.push("<div class='endingAction characterAction'>Victory!</div>");
         actionPrintouts();
+        resetHealth();
         if (player.getLevel() <= enemy.getLevel())
         {
           upgradeStats();
-          resetHealth();
         }
         window.setTimeout(function()
         {
