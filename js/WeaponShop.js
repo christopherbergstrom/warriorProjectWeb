@@ -1,13 +1,5 @@
 class WeaponShop
 {
-  buy()
-  {
-    
-  }
-  loadout()
-  {
-    
-  }
   stats(player, weapon)
   {
     console.log(player);
