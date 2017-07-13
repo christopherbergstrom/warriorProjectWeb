@@ -1,30 +1,36 @@
 * * * * * * *<br> Instructions<br>* * * * * * *<br><br>
-At each screen, you are presented several buttons.<br>
-Clicking a button will result in the action associated with that button being executed.<br>
-The button on the top left of the screen with the "M" is the main menu button, click this at any time and it will take you back to the main menu.<br>
-The Battle button will let you choose what enemy you want to fight. You can only fight enemies that are the same level as you.<br>
-The Practice Arena button will put you in a fight against a practice enemy with the same stats as you.<br>
-The Weapon Shop button will take you to the Weapon Shop where you can view stats on weapons purchased or unpurchased, buy and equip new weapons.<br>
-The Talk to Locals button will let you talk to several different locals in the city. This will let you find out more about the story.<br>
-The Player Stats button lets you view your current level, stats, loadout and gold.<br>
-The Instructions button lets you read the instructions.<br><br>
-
-You level up by defeating enemies. Each time you level up, your weapons' stats will automatically increase and you unlock the next enemy to fight.<br>
-When it is your turn to attack in each round, you are able to attack using any purchased weapon that is currently equipped.<br>
-Light, Medium, and Heavy weapons will always be available unless the weapon is cooling down.<br>
-Each enemy has a Light, Medium, and Heavy attack, as well as the option to block or dodge your attack, although the last two will vary between enemies.<br>
-When the enemy attacks, you only have the options to block or try to dodge the attack.<br>
-Throughout the game, you will have six weapon categories: Light, Medium, Heavy, Shields, Power Ups, and Magic.<br>
-Each weapon category has several different selections of weapons.<br>
-You can buy new weapons with gold. You accumulate gold by defeating enemies and when enemies randomly drop gold.<br><br>
-
-At the beginning of each round, there are several special boosts that will randomly be activated. These boosts are only active for one round.<br>
-DOUBLE DAMAGE INFLICTING ROUND: Every attack you choose will inflict double the normal damage.<br>
-DOUBLE DAMAGE LIGHT WEAPON ROUND: The current Light weapon will inflict double the normal damage.<br>
-DOUBLE DAMAGE MEDIUM WEAPON ROUND: The current Medium weapon will inflict double the normal damage.<br>
-DOUBLE DAMAGE HEAVY WEAPON ROUND: The current Heavy weapon will inflict double the normal damage.<br>
-ULTIMATE BLOCK ROUND: If you choose to block the enemy's attack, you will block 100% of the attack, regardless of what shield you have.<br>
-DOUBLE GOLD DROPPED ROUND: If the enemy drops gold, it will drop double the normal amount.<br>
-CRITICAL HIT: Randomly happens at any point mid game. It too, inflicts double the normal damage for any attack.<br>
-These boosts will all build on each other, meaning if you have the DOUBLE DAMAGE INFLICTING ROUND and the DOUBLE DAMAGE HEAVY WEAPON ROUND and you choose to attack with your Heavy weapon, it will inflict four times the normal damage<br>
-If you get a CRITICAL HIT with both of those boosts active, it will inflict eight times the normal damage.<br>
+<ul>
+  <li>At each screen, you are presented several buttons.</li>
+  <li>Clicking a button will result in the action associated with that button being executed.</li>
+  <li>The button on the top left of the screen with the "M" is the main menu button, click this at any time and it will take you back to the main menu.</li>
+  <li>The Battle button will let you choose what enemy you want to fight. You can only fight enemies that are the same level as you.</li>
+  <li>The Practice Arena button will put you in a fight against a practice enemy with the same stats as you.</li>
+  <li>The Weapon Shop button will take you to the Weapon Shop where you can view stats on weapons purchased or unpurchased, buy and equip new weapons.</li>
+  <li>The Talk to Locals button will let you talk to several different locals in the city. This will let you find out more about the story.</li>
+  <li>The Player Stats button lets you view your current level, stats, loadout and gold.</li>
+  <li>The Instructions button lets you read the instructions.
+</ul>
+<br>
+<ul>
+  <li>You level up by defeating enemies. Each time you level up, your weapons' stats will automatically increase and you unlock the next enemy to fight.</li>
+  <li>When it is your turn to attack in each round, you are able to attack using any purchased weapon that is currently equipped.</li>
+  <li>Light, Medium, and Heavy weapons will always be available unless the weapon is cooling down.</li>
+  <li>Each enemy has a Light, Medium, and Heavy attack, as well as the option to block or dodge your attack, although the last two will vary between enemies.</li>
+  <li>When the enemy attacks, you only have the options to block or try to dodge the attack.</li>
+  <li>Throughout the game, you will have six weapon categories: Light, Medium, Heavy, Shields, Power Ups, and Magic.</li>
+  <li>Each weapon category has several different selections of weapons.</li>
+  <li>You can buy new weapons with gold. You accumulate gold by defeating enemies and when enemies randomly drop gold.</li>
+</ul>
+<br>
+<ul>
+  <li>At the beginning of each round, there are several special boosts that will randomly be activated. These boosts are only active for one round.</li>
+  <li>DOUBLE DAMAGE INFLICTING ROUND: Every attack you choose will inflict double the normal damage.</li>
+  <li>DOUBLE DAMAGE LIGHT WEAPON ROUND: The current Light weapon will inflict double the normal damage.</li>
+  <li>DOUBLE DAMAGE MEDIUM WEAPON ROUND: The current Medium weapon will inflict double the normal damage.</li>
+  <li>DOUBLE DAMAGE HEAVY WEAPON ROUND: The current Heavy weapon will inflict double the normal damage.</li>
+  <li>ULTIMATE BLOCK ROUND: If you choose to block the enemy's attack, you will block 100% of the attack, regardless of what shield you have.</li>
+  <li>DOUBLE GOLD DROPPED ROUND: If the enemy drops gold, it will drop double the normal amount.</li>
+  <li>CRITICAL HIT: Randomly happens at any point mid game. It too, inflicts double the normal damage for any attack.</li>
+  <li>These boosts will all build on each other, meaning if you have the DOUBLE DAMAGE INFLICTING ROUND and the DOUBLE DAMAGE HEAVY WEAPON ROUND and you choose to attack with your Heavy weapon, it will inflict four times the normal damage</li>
+  <li>If you get a CRITICAL HIT with both of those boosts active, it will inflict eight times the normal damage.</li>
+</ul>
