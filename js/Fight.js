@@ -351,6 +351,7 @@ class Fight
       $("body").prepend("<button id='mainMenuBtn'>M</button>");
       $("#mainMenuBtn").click(function()
       {
+        resetHealth();
         console.log(player);
         var city = new City();
         city.returnToCity(player);
