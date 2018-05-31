@@ -408,7 +408,9 @@ class Fight
     {
       actionsArray.push("<div class='characterAction'>.</div>");
       actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" HP: "+enemy.getHealth()+"</div>");
+      $("#enemyHealth").html("HP "+enemy.getHealth());
       actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" HP: "+player.getHealth()+"</div>");
+      $("#playerHealth").html("HP "+player.getHealth());
       actionsArray.push("<div class='characterAction'>.</div>");
     }
     function actionFade()
