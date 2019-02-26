@@ -4,7 +4,7 @@ class City
   {
     if (warriorName === "")
       warriorName = "Warrior";
-    var player = new Character(warriorName, 250, "Blow Darts", 1, 2, "Chain Whip", 7, 3, "Shortsword", 15, 4, "Wood Shield", 1, 5, null, 0, null, 0, 0, 10, false, null, 0, 0, 0, 11);
+    var player = new Character(warriorName, 250, "Blow Darts", 1, 2, "Chain Whip", 7, 3, "Shortsword", 15, 4, "Wood Shield", 1, 5, null, 0, null, 0, 0, 10, false, null, 0, 0, 0, 1);
     player.weapons = [{name:"Blow Darts", dmg:1}, {name:"Chain Whip", dmg:7}, {name:"Shortsword", dmg:15}, {name:"Wood Shield", dmg:1}];
     // player.setGold("", 10000);
     this.returnToCity(player);

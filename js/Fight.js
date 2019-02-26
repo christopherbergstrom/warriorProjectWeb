@@ -374,7 +374,7 @@ class Fight
       // character: name, health, light, medium, heavy, shield, powerup, magic, dodge, gold
       // player stats
       $("#playerStats").append("<div>"+player.getName()+"</div>");
-      $("#playerStats").append("<div>HP "+player.getHealth()+"</div>");
+      $("#playerStats").append("<div id='playerHealth'>HP "+player.getHealth()+"</div>");
       $("#playerStats").append("<div>"+player.getLightWpn()+" "+player.getLightDmg()+"-"+(player.getLightDmg()+(player.getLightRng()-1))+"</div>");
       $("#playerStats").append("<div>"+player.getMediumWpn()+" "+player.getMediumDmg()+"-"+(player.getMediumDmg()+(player.getMediumRng()-1))+"</div>");
       $("#playerStats").append("<div>"+player.getHeavyWpn()+" "+player.getHeavyDmg()+"-"+(player.getHeavyDmg()+(player.getHeavyRng()-1))+"</div>");
@@ -387,7 +387,7 @@ class Fight
       $("#playerStats").append("<div id='playerGoldFight'>Gold "+player.getGold()+"</div>");
       // enemy stats
       $("#enemyStats").append("<div>"+enemy.getName()+"</div>");
-      $("#enemyStats").append("<div>HP "+enemy.getHealth()+"</div>");
+      $("#enemyStats").append("<div id='enemyHealth'>HP "+enemy.getHealth()+"</div>");
       $("#enemyStats").append("<div>"+enemy.getLightWpn()+" "+enemy.getLightDmg()+"-"+(enemy.getLightDmg()+(enemy.getLightRng()-1))+"</div>");
       $("#enemyStats").append("<div>"+enemy.getMediumWpn()+" "+enemy.getMediumDmg()+"-"+(enemy.getMediumDmg()+(enemy.getMediumRng()-1))+"</div>");
       $("#enemyStats").append("<div>"+enemy.getHeavyWpn()+" "+enemy.getHeavyDmg()+"-"+(enemy.getHeavyDmg()+(enemy.getHeavyRng()-1))+"</div>");
@@ -408,7 +408,9 @@ class Fight
     {
       actionsArray.push("<div class='characterAction'>.</div>");
       actionsArray.push("<div class='enemyAction characterAction'>"+enemy.getName()+" HP: "+enemy.getHealth()+"</div>");
+      $("#enemyHealth").html("HP "+enemy.getHealth());
       actionsArray.push("<div class='playerAction characterAction'>"+player.getName()+" HP: "+player.getHealth()+"</div>");
+      $("#playerHealth").html("HP "+player.getHealth());
       actionsArray.push("<div class='characterAction'>.</div>");
     }
     function actionFade()
